@@ -8,6 +8,9 @@ const memoryCards = document.querySelectorAll(".cards li");
 let cardOne, cardTwo;
 let disableDeck = false;
 let matchedCard = 0;
+let Mpoint = 0, // 점수
+    Mcount = 0; // 정답 갯수
+let MtimeReamining = 30; // 남은시간
 
 let sound = ["../assets/music/Success 2.mp3", "../assets/music/fail.mp3", "../assets/music/up.mp3"];
 let soundMatch = new Audio(sound[0]);
@@ -48,6 +51,8 @@ function matchCards(img1, img2) {
         cardOne = cardTwo = "";
         disableDeck = false;
 
+        Mcount++;
+        memoCount.textContent = Mcount;
         soundMatch.play();
     } else {
         // 일치하지 않는 경우(오답 사운드, 이미지가 좌우로 흔들림)
@@ -99,17 +104,27 @@ memoryCards.forEach((card) => {
 
 const memoToggle = document.querySelector(".icon2");
 const memoWrap = document.querySelector(".memory__wrap");
-
-// 게임 ON / OFF
-memoToggle.addEventListener("click", () => {
-    memoWrap.classList.toggle("show");
-    shuffledCard();
-});
-
-// 게임 시간
 const memoryTime = document.querySelector(".memory__time span");
 
-let MtimeReamining = 60; // 남은시간
+const startbtnWrap = document.querySelector(".memory__start");
+const startbtn = document.querySelector(".memory_button");
+
+const memoResultWrap = document.querySelector(".memory__result");
+const memoResult = document.querySelector(".memory__result .memory_result");
+const memoRestart = document.querySelector(".memory_restart");
+const memoCount = document.querySelector(".memory__info .memory_point");
+
+// 게임 시작하기
+function startMemory() {
+    // 시작 버튼 없애기
+    startbtnWrap.style.display = "none";
+
+    // 시간 설정
+    timeInterval = setInterval(reduceTime, 1000);
+
+    // 카드 섞기
+    shuffledCard();
+}
 
 // 시간 설정하기
 function reduceTime() {
@@ -117,7 +132,7 @@ function reduceTime() {
 
     if (MtimeReamining == 0)
         setTimeout(() => {
-            endQuiz();
+            endMemory();
         }, 500);
 
     memoryTime.innerText = displayTime();
@@ -136,3 +151,36 @@ function displayTime() {
         return minutes + ":" + seconds;
     }
 }
+
+// 게임 끝났을 때
+function endMemory() {
+    // 시작 버튼 만들기
+    startbtnWrap.style.display = "block";
+    startbtn.style.display = "none";
+
+    // 시간 정지
+    clearInterval(timeInterval);
+
+    // 메시지 출력
+    memoResultWrap.classList.add("show");
+    let Mpoint = Math.round((Mcount / 8) * 100);
+    memoResult.innerHTML = `당신은 ${8}개중에 ${Mcount}개를 맞추었습니다.<br>당신의 점수는 ${Mpoint}점 입니다.`;
+}
+
+// 다시 시작하기
+function restart() {
+    memoResultWrap.classList.remove("show");
+
+    startMemory();
+    MtimeReamining = 30;
+    Mcount = 0;
+    memoCount.innerText = "0";
+}
+
+startbtn.addEventListener("click", startMemory);
+memoRestart.addEventListener("click", restart);
+
+// 게임 ON / OFF
+memoToggle.addEventListener("click", () => {
+    memoWrap.classList.toggle("show");
+});

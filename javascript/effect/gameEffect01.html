@@ -122,6 +122,9 @@
 
             <div class="memory__wrap">
                 <div class="memory__inner">
+                    <div class="memory__start">
+                        <p class="memory_button">시작하기</p>
+                    </div>
                     <div class="memory__card">
                         <ul class="cards">
                             <li>
@@ -255,7 +258,16 @@
                         </ul>
                     </div>
                     <div class="memory__time">
-                        <span>2:00</span>
+                        <span>0:30</span>
+                    </div>
+                    <div class="memory__info center">
+                        <div>현재 스코어 : <span class="memory_point">0</span></div>
+                    </div>
+                    <div class="memory__result">
+                        <div class="memory__svg__wrap">
+                            <div class="memory_result"></div>
+                            <button class="memory_restart">다시하기</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -711,6 +723,7 @@
             $(".music__inner").draggable();
             $(".search__wrap").draggable();
             $(".search__result").draggable();
+            $(".memory__result").draggable();
 
             function printTime() {
                 const clock = document.querySelector(".time");
