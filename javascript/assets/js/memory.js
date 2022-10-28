@@ -105,3 +105,34 @@ memoToggle.addEventListener("click", () => {
     memoWrap.classList.toggle("show");
     shuffledCard();
 });
+
+// 게임 시간
+const memoryTime = document.querySelector(".memory__time span");
+
+let MtimeReamining = 60; // 남은시간
+
+// 시간 설정하기
+function reduceTime() {
+    MtimeReamining--;
+
+    if (MtimeReamining == 0)
+        setTimeout(() => {
+            endQuiz();
+        }, 500);
+
+    memoryTime.innerText = displayTime();
+}
+
+// 시간 표시하기
+function displayTime() {
+    if (MtimeReamining <= 0) {
+        return "0:00";
+    } else {
+        let minutes = Math.floor(MtimeReamining / 60);
+        let seconds = MtimeReamining % 60;
+
+        // 초 단위가 한자리수 일 때 0을 추가
+        if (seconds < 10) seconds = "0" + seconds;
+        return minutes + ":" + seconds;
+    }
+}
