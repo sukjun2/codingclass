@@ -210,6 +210,10 @@
     padding: 5px 10px;
     font-size: 24px;
 }
+.memory_restart:hover {
+    background-color: blue;
+    color: #fff;
+}
 .memory_point {
     color: blue;
 }
