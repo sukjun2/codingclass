@@ -44,7 +44,7 @@ function matchCards(img1, img2) {
         matchedCard++;
 
         if (matchedCard == 8) {
-            alert("game over");
+            endMemory();
         }
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
@@ -75,8 +75,11 @@ function matchCards(img1, img2) {
 // 카드 섞기
 function shuffledCard() {
     cardOne = cardTwo = "";
-    disableDeck = false;
     matchedCard = 0;
+    disableDeck = true;
+    setTimeout(() => {
+        disableDeck = false;
+    }, 3000);
 
     let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
     let result = arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
@@ -92,16 +95,13 @@ function shuffledCard() {
             card.classList.remove("flip");
         }, 4000);
 
+        card.addEventListener("click", flipCard);
         let imgTag = card.querySelector(".back img");
         imgTag.src = `../assets/img/card0${arr[index]}.png`;
     });
 }
 
 // 카드 클릭
-memoryCards.forEach((card) => {
-    card.addEventListener("click", flipCard);
-});
-
 const memoToggle = document.querySelector(".icon2");
 const memoWrap = document.querySelector(".memory__wrap");
 const memoryTime = document.querySelector(".memory__time span");
