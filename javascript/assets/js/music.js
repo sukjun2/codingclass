@@ -308,6 +308,9 @@ Close.addEventListener("click", () => {
 });
 MusicFolder.addEventListener("click", () => {
     Music.classList.toggle("show");
+    $(".memory__wrap").css("z-index", "0");
+    $(".music__wrap").css("z-index", "1000");
+    $(".search__wrap").css("z-index", "0");
 });
 
 window.addEventListener("load", () => {

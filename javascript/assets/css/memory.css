@@ -1,5 +1,7 @@
 .memory__wrap {
     display: none;
+    position: relative;
+    z-index: 100;
 }
 .memory__wrap.show {
     display: block;

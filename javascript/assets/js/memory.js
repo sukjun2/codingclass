@@ -183,4 +183,7 @@ memoRestart.addEventListener("click", restart);
 // 게임 ON / OFF
 memoToggle.addEventListener("click", () => {
     memoWrap.classList.toggle("show");
+    $(".memory__wrap").css("z-index", "1000");
+    $(".music__wrap").css("z-index", "0");
+    $(".search__wrap").css("z-index", "0");
 });

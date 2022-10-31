@@ -5,6 +5,9 @@ const modalCont = document.querySelector(".modal__cont");
 
 modalBtn.addEventListener("click", () => {
     modalCont.classList.add("show");
+    $(".memory__wrap").css("z-index", "0");
+    $(".music__wrap").css("z-index", "0");
+    $(".search__wrap").css("z-index", "0");
     modalCont.classList.remove("hide");
 });
 modalClose.addEventListener("click", () => {
