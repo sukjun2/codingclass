@@ -44,8 +44,6 @@ function matchCards(img1, img2) {
         matchedCard++;
 
         if (matchedCard == 8) {
-            Mcount = Mcount + 1;
-            Mpoint = Mpoint - 1;
             endMemory();
         }
         cardOne.removeEventListener("click", flipCard);
@@ -130,7 +128,9 @@ function startMemory() {
 
 // 시간 설정하기
 function reduceTime() {
-    MtimeReamining--;
+    setTimeout(() => {
+        MtimeReamining--;
+    }, 2000);
 
     if (MtimeReamining == 0)
         setTimeout(() => {
@@ -166,7 +166,11 @@ function endMemory() {
     // 메시지 출력
     memoResultWrap.classList.add("show");
     let Mpoint = Math.round((Mcount / 8) * 100);
-    memoResult.innerHTML = `당신은 ${8}개중에 ${Mcount}개를 맞추었습니다.<br>당신의 점수는 ${Mpoint}점 입니다.`;
+    if (matchedCard == 8) {
+        memoResult.innerHTML = `당신은 ${8}개중에 ${Mcount + 1}개를 맞추었습니다.<br>당신의 점수는 100점 입니다.`;
+    } else {
+        memoResult.innerHTML = `당신은 ${8}개중에 ${Mcount + 1}개를 맞추었습니다.<br>당신의 점수는 ${Mpoint}점 입니다.`;
+    }
 }
 
 // 다시 시작하기
