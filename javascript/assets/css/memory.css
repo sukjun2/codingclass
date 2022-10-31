@@ -19,6 +19,7 @@
 }
 .memory__card {
     padding: 30px;
+    position: relative;
 }
 .memory__card .cards {
     display: flex;
@@ -158,8 +159,8 @@
     color: red;
     position: absolute;
     font-size: 80px;
-    top: -100px;
-    left: 230px;
+    top: -90px;
+    left: 0px;
 }
 
 .memory__result {
@@ -182,6 +183,7 @@
 
 .memory__result .memory_result {
     font-size: 30px;
+    margin-bottom: 30px;
 }
 
 .memory__result.show {
@@ -239,4 +241,12 @@
     100% {
         transform: scale3d(1, 1, 1);
     }
+}
+
+.memory__info {
+    position: absolute;
+    top: -50px;
+    right: 0px;
+    font-size: 36px;
+    color: #000;
 }
