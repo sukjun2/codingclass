@@ -10,7 +10,7 @@ let disableDeck = false;
 let matchedCard = 0;
 let Mpoint = 0, // 점수
     Mcount = 0; // 정답 갯수
-let MtimeReamining = 40; // 남은시간
+let MtimeReamining = 5; // 남은시간
 
 let sound = ["../assets/music/Success 2.mp3", "../assets/music/fail.mp3", "../assets/music/up.mp3"];
 let soundMatch = new Audio(sound[0]);
@@ -178,7 +178,7 @@ function restart() {
     memoResultWrap.classList.remove("show");
 
     startMemory();
-    MtimeReamining = 40;
+    MtimeReamining = 5;
     Mcount = 0;
     memoCount.innerText = "0";
 }

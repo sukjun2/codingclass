@@ -91,7 +91,6 @@ function loadMusic(num) {
     musicView.src = `../assets/img/${allMusic[num - 1].img}.png`; // 뮤직 이미지 로드
     musicView.alt = allMusic[num - 1].name; // 뮤직 이미지 alt 로드
     musicAudio.src = `../assets/music/${allMusic[num - 1].audio}.mp3`; // 뮤직 로드
-    playMusic();
 }
 
 // 재생 버튼
@@ -289,9 +288,14 @@ function clicked(el) {
     let getLiindex = el.getAttribute("data-index"); // 클릭한 리스트의 인덱스값을 저장
     musicIndex = getLiindex; // 클릭한 인데스 값을 뮤직 인덱스 저장
     loadMusic(musicIndex); // 해당 인덱스 뮤직 로드
-    pauseMusic(); // 음악 재생
+    playMusic(); // 음악 재생
     playListMusic(); // 음악 리스트 업데이트
 }
+
+window.addEventListener("load", () => {
+    loadMusic(musicIndex); // 음악 재생
+    playListMusic(); // 리스트 초기화
+});
 
 // 뮤직 리스트 열기, 닫기
 const musicFooter = document.querySelector(".music__footer");
@@ -308,14 +312,10 @@ Close.addEventListener("click", () => {
 });
 MusicFolder.addEventListener("click", () => {
     Music.classList.toggle("show");
-    $(".memory__wrap").css("z-index", "0");
     $(".music__wrap").css("z-index", "1000");
+    $(".memory__wrap").css("z-index", "0");
     $(".search__wrap").css("z-index", "0");
-});
-
-window.addEventListener("load", () => {
-    loadMusic(musicIndex); // 음악 재생
-    playListMusic(); // 리스트 초기화
+    playMusic();
 });
 
 // 볼륨 조절
