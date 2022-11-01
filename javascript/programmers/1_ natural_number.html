@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 자연수 뒤집어 배열로 만들기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 자연수 뒤집어 배열로 만들기</h2>
+                <p class="t_desc2">자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다.</p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">n은 10,000,000,000이하인 자연수입니다.</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>n</th>
+                            <th>return</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12345</td>
+                            <td>[5,4,3,2,1]</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(n) {
+    let answer = [];
+    answer = n.toString().split('').reverse().map(Number);
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    주어진 숫자 n값을 문자열로 변형시키고, split메서드를 사용해 각각의 문자인 배열로 저장합니다 => ['5', '4', '3', '2', '1'] 다음 reverse메서드로 역순으로 정렬해주고
+                    map(Number)메서드를 사용하여 문자열을 숫자로 변경하여주면 정답입니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(n) {
+    var arr = [];
+
+    do {
+        arr.push(n%10);
+        n = Math.floor(n/10);
+    } while (n>0);
+
+    return arr;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    아주 신박하게 수학적으로 답을 추출해내신 분 입니다. 빈 배열을 변수에 저장하고 do while문을 사용하여 arr변수에 n을 10으로 나눈 나머지값을 push하여 배열에 저장하여주는데, 나눈 후
+                    소수점을 버려주기 위해 Math.floor()메서드를 사용해줍니다. n > 0 에 만족한다면 반복 실행하도록 조건을 작성해주면 마지막으로 나머지값 1이 저장되고 do while문이 종료되게됩니다.<br />
+                    (이게 개발자의 창의성이군요..)
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
