@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 자릿수 더하기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 자릿수 더하기</h2>
+                <p class="t_desc2">자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요. 예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.</p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">N의 범위 : 100,000,000 이하의 자연수</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>N</th>
+                            <th>answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>123</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>987</td>
+                            <td>24</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(n)
+{
+    let answer = 0;
+    let x = n.toString().split('').map(Number);
+    for(i = 0; i <= x.length - 1 ; i++){
+        answer += x[i];
+    }
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    숫자 n값을 문자로 변형하여 split()메서드를 사용해 배열화 시켜준 뒤, map(Number)메서드로 배열 내부에서 다시 숫자로 변형시켜줍니다. 그리고 for문을 사용하여 answer에 배열내의 숫자를
+                    모두 더해주면 끝입니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(n){
+    return (n+"").split("").reduce((acc, curr) => acc + parseInt(curr), 0)
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    자바스크립트에서 덧셈 연산자 +를 사용할 때, 피연산자 중 어느 하나가 문자열이면 문자열이 아닌 다른 피연산자도 문자열로 타입이 변환되어 문자열을 합친 값이 반환됩니다. 위의 예시에서
+                    n+""은 숫자 + 문자열의 형태이기 때문에 결과적으로 문자열 n을 반환합니다. 참고로 ""은 빈문자열이기 때문에 연결해도 반환값에 영향을 주지 않습니다. 그저 다른 피연산자를 문자열로
+                    형변환하는 역할을 합니다. 따라서 String(n)과 동일하게 사용할 수 있습니다. reduce()메서드로 배열 요소들을 연산하여 결과값을 추출하는데, 문자열을 parseInt()메서드로 숫자로 변경하여
+                    연산해줍니다. 뒤에 0은 initialValue로 입력해주지 않으면 index값의 1부터 계산하기 때문에 여러개의 요소가 있는 배열을 계산할 때 꼭 넣어주어야합니다.
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
