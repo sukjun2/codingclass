@@ -120,14 +120,14 @@ function startMemory() {
     startbtnWrap.style.display = "none";
 
     // 시간 설정
-    timeInterval = setInterval(reduceTime, 1000);
+    timeInterval = setInterval(MreduceTime, 1000);
 
     // 카드 섞기
     shuffledCard();
 }
 
 // 시간 설정하기
-function reduceTime() {
+function MreduceTime() {
     setTimeout(() => {
         MtimeReamining--;
     }, 2000);
@@ -137,11 +137,11 @@ function reduceTime() {
             endMemory();
         }, 500);
 
-    memoryTime.innerText = displayTime();
+    memoryTime.innerText = MdisplayTime();
 }
 
 // 시간 표시하기
-function displayTime() {
+function MdisplayTime() {
     if (MtimeReamining <= 0) {
         return "0:00";
     } else {
