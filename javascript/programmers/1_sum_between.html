@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 두 정수 사이의 합</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 두 정수 사이의 합</h2>
+                <p class="t_desc2">
+                    두 정수 a, b가 주어졌을 때 a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, solution을 완성하세요. 예를 들어 a = 3, b = 5인 경우, 3 + 4 + 5 = 12이므로 12를 리턴합니다.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    Na와 b가 같은 경우는 둘 중 아무 수나 리턴하세요. <br />
+                    a와 b는 -10,000,000 이상 10,000,000 이하인 정수입니다. <br />
+                    a와 b의 대소관계는 정해져있지 않습니다.
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>a</th>
+                            <th>b</th>
+                            <th>return</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>3</td>
+                            <td>12</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(a, b) {
+    let answer = 0;
+    let x = [];
+    if(a &lt; b){
+        for(let i = a; i &lt;= b; i++){
+            x.push(i);
+        }      
+            answer = x.reduce((a, b) => a + b, 0);
+    } else {
+        for(let i = a; i >= b; i--){
+            x.push(i)
+        }
+            answer = x.reduce((a, b) => a + b, 0);
+    }
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    변수 x에 빈 배열을저장하고 for문을 사용하여 a가 b보다 작을 때 a~b까지의 값을 x 빈 배열에 추가하고, reduce메서드를 사용하여 answer에 연산값을 넣어줍니다. <br />
+                    a가 b보다 크지 않을 경우도 반복하면 끝입니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function adder(a, b){
+    var result = 0
+
+    return (a+b)*(Math.abs(b-a)+1)/2;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">프로그래머스에는 수학자가 많네요, (b-a)에 +1을 한 절대값을 2로 나누어주고 (a+b)값에 곱해주면 끝입니다. 허탈하네요 ㅎ...</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>

@@ -575,3 +575,35 @@ GameToggle.addEventListener("click", () => {
     $(".music__wrap").css("z-index", "0");
     $(".search__wrap").css("z-index", "1000");
 });
+
+// 게임 초기화
+function searchReset() {
+    // 다시 시작할 때 기존 데이터 초기화
+    searchAnswers.style.display = "none";
+    searchMissAnswers.style.display = "none";
+
+    // 오디오 초기화
+    searchAudio.pause();
+    searchAudioPlay.style.display = "none";
+    searchAudioPause.style.display = "block";
+
+    // 시작 버튼 만들기
+    searchStart.style.display = "block";
+
+    // 다시 시작할 때 기존 데이터 초기화
+    searchAnswers.innerHTML = "";
+
+    timeReamining = 120;
+    clearInterval(timeInterval);
+    searchTime.innerText = displayTime();
+    count = 0;
+    searchCount.innerText = "0";
+}
+
+// 닫기 버튼
+const searchClose = document.querySelector(".search__wrapper");
+
+searchClose.addEventListener("click", () => {
+    GameWrap.classList.remove("show");
+    searchReset();
+});

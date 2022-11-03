@@ -315,7 +315,7 @@ MusicFolder.addEventListener("click", () => {
     $(".music__wrap").css("z-index", "1000");
     $(".memory__wrap").css("z-index", "0");
     $(".search__wrap").css("z-index", "0");
-    playMusic();
+    pauseMusic();
 });
 
 // 볼륨 조절
@@ -333,4 +333,12 @@ audioVolume.addEventListener("change", function (e) {
         volumeIcon.classList.remove("hide");
         volumeOffIcon.classList.remove("show");
     }
+});
+
+// 닫기 버튼
+const musicClose = document.querySelector(".music__wrapper");
+
+musicClose.addEventListener("click", () => {
+    Music.classList.remove("show");
+    pauseMusic();
 });

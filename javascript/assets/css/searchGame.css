@@ -532,3 +532,18 @@ g#head #rightAntenna > ellipse {
         transform: rotate(-1deg);
     }
 }
+
+.search__wrapper {
+    scale: 0.5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+.search__wrapper:hover {
+    background-color: red;
+}
+

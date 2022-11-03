@@ -10,7 +10,7 @@ let disableDeck = false;
 let matchedCard = 0;
 let Mpoint = 0, // 점수
     Mcount = 0; // 정답 갯수
-let MtimeReamining = 5; // 남은시간
+let MtimeReamining = 40; // 남은시간
 
 let sound = ["../assets/music/Success 2.mp3", "../assets/music/fail.mp3", "../assets/music/up.mp3"];
 let soundMatch = new Audio(sound[0]);
@@ -178,7 +178,7 @@ function restart() {
     memoResultWrap.classList.remove("show");
 
     startMemory();
-    MtimeReamining = 5;
+    MtimeReamining = 40;
     Mcount = 0;
     memoCount.innerText = "0";
 }
@@ -192,4 +192,31 @@ memoToggle.addEventListener("click", () => {
     $(".memory__wrap").css("z-index", "1000");
     $(".music__wrap").css("z-index", "0");
     $(".search__wrap").css("z-index", "0");
+});
+
+// 게임 리셋
+function memoryReset() {
+    // 시작 버튼 만들기
+    startbtnWrap.style.display = "block";
+    startbtn.style.display = "block";
+
+    MtimeReamining = 40;
+    clearInterval(timeInterval);
+    Mcount = 0;
+    memoCount.innerText = "0";
+    memoryTime.innerText = MdisplayTime();
+
+    shuffledCard();
+}
+
+// 닫기 버튼
+const memoryClose = document.querySelector(".memory__wrapper");
+
+memoryClose.addEventListener("click", () => {
+    memoWrap.classList.remove("show");
+    startbtn.style.width = "50%";
+    startbtn.style.position = "absolute";
+    startbtn.style.left = "25%";
+    startbtn.style.top = "50%";
+    memoryReset();
 });
