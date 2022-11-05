@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 음양 더하기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 음양 더하기</h2>
+                <p class="t_desc2">
+                    어떤 정수들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을
+                    구하여 return 하도록 solution 함수를 완성해주세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    absolutes의 길이는 1 이상 1,000 이하입니다. <br />
+                    - absolutes의 모든 수는 각각 1 이상 1,000 이하입니다. <br />
+                    signs의 길이는 absolutes의 길이와 같습니다. <br />
+                    - signs[i] 가 참이면 absolutes[i] 의 실제 정수가 양수임을, 그렇지 않으면 음수임을 의미합니다.
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>absolutes</th>
+                            <th>signs</th>
+                            <th>result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>[4,7,12]</td>
+                            <td>[true,false,true</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>[1,2,3]</td>
+                            <td>[false,false,true]</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(absolutes, signs) {
+    let answer = 0;
+    answer = absolutes.reduce((acc, curr, i) => acc + curr * (signs[i] ? 1 : -1), 0);
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    reduce()메서드를 사용하여 해결하였습니다. sign[i]에 삼항연산자를 통하여 참일경우 1을 곱하여 거짓일경우 -1이 곱해지도록 계산하였으며, 연산에 지장이 없도록 initialValue값을 0으로
+                    지정해주었습니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(absolutes, signs) {
+    let answer = 0;
+    absolutes.forEach((v, i) => {
+        if (signs[i]) {
+            answer += v;
+        } else {
+            answer -= v;
+        }
+    })
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">기본적인 연산은 비슷하나, forEach문을 사용한 풀이가 있어 가져왔습니다. sign의 index값이 참이면 absolutes의 element값을 더하고 거짓이면 빼도록 작성하였네요.</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>

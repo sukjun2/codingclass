@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 문자열 내 p와 y의 개수</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 문자열 내 p와 y의 개수</h2>
+                <p class="t_desc2">
+                    대문자와 소문자가 섞여있는 문자열 s가 주어집니다. s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 'p', 'y' 모두 하나도 없는
+                    경우는 항상 True를 리턴합니다. 단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다. <br />
+                    <br />
+                    예를 들어 s가 "pPoooyY"면 true를 return하고 "Pyy"라면 false를 return합니다.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    문자열 s의 길이 : 50 이하의 자연수 <br />
+                    문자열 s는 알파벳으로만 이루어져 있습니다.
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>s</th>
+                            <th>answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"pPoooyY"</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>"Pyy"</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">// 01
+// function solution(s){
+//     if(s.match(/p/gi).length === s.match(/y/gi).length){
+//         answer = true;
+//     } else {
+//         answer = false;
+//     }
+//     return answer;
+// }
+    
+// 02
+function solution(s){
+    let x = s.toLowerCase();
+    answer = x.split('p').length === x.split('y').length ? true : false;
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    첫 번째 시도는 2, 3, 29, 30번 테스트 케이스가 런타임 오류가 나오는데.. 아마도 s값(문자열)에 p나 y가 없을 때 null값이 나와서 null값은 length함수를 가지고 있지 않기 때문이라고
+                    주워들었습니다.<br />
+                    두 번째 시도는 s를 모두 소문자화시켜 변수x에 저장하고, split()메서드를 통해 p나 y가 없어도 빈배열으로 비교를 할 수 있도록 하였더니 통과되었네요 ㅎㅎ.(맞나..?)
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(s){
+    return [...s.toLowerCase()].reduce((acc, cur) => {
+        if(cur ==='p') return acc + 1;
+        else if(cur ==='y') return acc - 1;
+        return acc;
+    }, 0) ? false : true;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    배열내부에 s변수를 전개하고, 소문자화합니다. reduce()메서드를 사용하여 p가 있다면 +1 , y가 있다면 -1을 하여 만약 p와 y값이 같다면 0이므로 false, 같지 않다면 0이외의 숫자이므로
+                    true가 나온다. 삼항연산자를 이용해 true일때 false를, false일 때 true를 반환해줍니다. p와 y가 없다면 acc는 0이므로 true를 반환해줍니다.
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 문자열을 정수로 바꾸기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 문자열을 정수로 바꾸기</h2>
+                <p class="t_desc2">문자열 s를 숫자로 변환한 결과를 반환하는 함수, solution을 완성하세요.</p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    s의 길이는 1 이상 5이하입니다. <br />
+                    s의 맨앞에는 부호(+, -)가 올 수 있습니다. <br />
+                    s는 부호와 숫자로만 이루어져있습니다. <br />
+                    s는 "0"으로 시작하지 않습니다. <br />
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <div class="t_box">
+                    예를들어 str이 "1234"이면 1234를 반환하고, "-1234"이면 -1234를 반환하면 됩니다. <br />
+                    str은 부호(+,-)와 숫자로만 구성되어 있고, 잘못된 값이 입력되는 경우는 없습니다.
+                </div>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(s) {
+    let answer = 0;
+    answer = parseInt(s);
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">parseInt()메서드로 문자열 s값을 숫자화 시키면 됩니다. 역대급으로 쉽죠?</div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function strToInt(str){
+    return str/1
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">문자와 숫자를 사칙연산시키면 문자가 자동으로 숫자로 형변환 된다고하네요. (이런걸 어떻게 아는거지..?)</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
