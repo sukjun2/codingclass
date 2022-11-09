@@ -187,9 +187,10 @@ startbtn.addEventListener("click", startMemory);
 memoRestart.addEventListener("click", restart);
 
 // 게임 ON / OFF
-memoToggle.addEventListener("click", () => {
+memoToggle.addEventListener("dblclick", () => {
     memoWrap.classList.toggle("show");
     $(".memory__wrap").css("z-index", "1000");
+    $(".tetris__wrapper").css("z-index", "0");
     $(".music__wrap").css("z-index", "0");
     $(".search__wrap").css("z-index", "0");
 });

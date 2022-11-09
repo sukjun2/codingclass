@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="../assets/css/music.css" />
         <link rel="stylesheet" href="../assets/css/memory.css" />
         <link rel="stylesheet" href="../assets/css/searchGame.css" />
+        <link rel="stylesheet" href="../assets/css/tetrisGame.css" />
         <link rel="stylesheet" href="../assets/css/dracula.css" />
     </head>
     <body>
@@ -28,20 +29,20 @@
         <main id="main">
             <div class="icon">
                 <div class="icon1">
-                    <img src="../assets/img/icon1.png" alt="뮤직" />
+                    <img src="../assets/img/icon1.png" alt="뮤직 플레이어" />
                     <span>뮤직 듣기</span>
                 </div>
                 <div class="icon2">
-                    <img src="../assets/img/icon2.png" alt="영화" />
+                    <img src="../assets/img/icon2.png" alt="카드 게임" />
                     <span>카드 게임</span>
                 </div>
                 <div class="icon3">
-                    <img src="../assets/img/icon3.png" alt="게임" />
+                    <img src="../assets/img/icon3.png" alt="서치 게임" />
                     <span>서치 게임</span>
                 </div>
                 <div class="icon4">
-                    <img src="../assets/img/icon4.png" alt="내 폴더" />
-                    <span>내 폴더</span>
+                    <img src="../assets/img/icon4.png" alt="테트리스 게임" />
+                    <span>테트리스 게임</span>
                 </div>
                 <div class="icon5">
                     <img src="../assets/img/icon5.png" alt="피그마" />
@@ -128,6 +129,108 @@
                 </div>
             </div>
             <!-- //뮤직 플레이어 -->
+
+            <div class="tetris__wrap">
+                <div class="tetris__inner">
+                    <div class="tetris__start"></div>
+                    <div class="tetris__restart"></div>
+                    <div class="tetris__play">
+                        <div class="playground">
+                            <ul></ul>
+                        </div>
+                    </div>
+                    <div class="tetris__score">
+                        <div>Scroe : <em class="tetScore">0</em></div>
+                    </div>
+                    <div class="tetris__result">
+                        <div class="tetris__svg__wrap">
+                            <div class="tetris_result"></div>
+                            <button class="tetris_restart">다시하기</button>
+                        </div>
+                    </div>
+                    <div class="banana"></div>
+                    <div class="tetris__wrapper">
+                        <div class="close-button">
+                            <div class="in">
+                                <div class="tclose-button-block"></div>
+                                <div class="tclose-button-block"></div>
+                            </div>
+                            <div class="out">
+                                <div class="tclose-button-block"></div>
+                                <div class="tclose-button-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tetris__audio">
+                        <span class="play_tetris">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M15 6.3706C15 4.65827 12.9884 3.73774 11.6926 4.85712L8.36317 7.73321C7.99989 8.04704 7.53583 8.21972 7.05576 8.21973L5.49998 8.21974C4.11928 8.21975 3 9.33903 3 10.7197V14.0127C3 15.3934 4.11929 16.5127 5.5 16.5127H7.0558C7.53587 16.5127 7.99993 16.6854 8.36322 16.9992L11.6926 19.8753C12.9884 20.9947 15 20.0741 15 18.3618V12.3662V6.3706Z"
+                                    fill="#223547"
+                                    stroke="#223547"
+                                    stroke-width="1.5"
+                                />
+                                <path d="M18 15.3667C18.6279 14.531 19 13.4923 19 12.3667C19 11.2411 18.6279 10.2024 18 9.3667" stroke="#223547" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M20 18.3667C21.2558 16.6954 22 14.6179 22 12.3667C22 10.1155 21.2558 8.03802 20 6.3667" stroke="#223547" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="stop_tetris">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14 6.3706C14 4.65827 11.9884 3.73774 10.6926 4.85712L7.36317 7.73321C6.99989 8.04704 6.53583 8.21972 6.05576 8.21973L4.49998 8.21974C3.11928 8.21975 2 9.33903 2 10.7197V14.0127C2 15.3934 3.11929 16.5127 4.5 16.5127H6.0558C6.53587 16.5127 6.99993 16.6854 7.36322 16.9992L10.6926 19.8753C11.9884 20.9947 14 20.0741 14 18.3618V12.3662V6.3706Z"
+                                    fill="#223547"
+                                    stroke="#223547"
+                                    stroke-width="1.5"
+                                />
+                                <path d="M18 14.1215L22.2427 9.87891" stroke="#223547" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M18 9.87894L22.2427 14.1216" stroke="#223547" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <audio id="audio" src="../assets/music/music_audio07.mp3" loop="loop"></audio>
+                        <audio id="audio_complete" src="../assets/music/Success 2.mp3"></audio>
+                        <audio id="audio_fail" src="../assets/music/fail.mp3"></audio>
+                    </div>
+                </div>
+
+                <div class="tetris__loading">
+                    <div class="container">
+                        <div class="game-area">
+                            <div class="flash"></div>
+
+                            <div class="blue-fall-row">
+                                <div class="block fall1"></div>
+                                <div class="block fall2"></div>
+                                <div class="block fall3"></div>
+                                <div class="block fall4"></div>
+                            </div>
+
+                            <div class="yellow-row">
+                                <div class="block y1"></div>
+                                <div class="block y2"></div>
+                                <div class="block y3"></div>
+                                <div class="block y4"></div>
+                            </div>
+
+                            <div class="blue-stay-row">
+                                <div class="block stay1"></div>
+                                <div class="block stay2"></div>
+                                <div class="block stay3"></div>
+                            </div>
+
+                            <div class="red-row">
+                                <div class="block r1"></div>
+                                <div class="block r2"></div>
+                                <div class="block r3"></div>
+                                <div class="block r4"></div>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="eightbit-btn">Play Game</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //테트리스 게임 -->
 
             <div class="memory__wrap">
                 <div class="memory__inner">
@@ -709,15 +812,15 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="https://github.com/sukjun2/codingclass/tree/main/javascript/assets/js">JAVASCRIPT</a>
+                        <a href="https://github.com/sukjun2/codingclass/tree/main/javascript/assets/js" target="_blank">JAVASCRIPT</a>
                         <span></span><span></span><span></span><span></span>
                     </li>
                     <li>
-                        <a href="https://github.com/sukjun2/codingclass/blob/main/javascript/effect/gameEffect01.html">HTML</a>
+                        <a href="https://github.com/sukjun2/codingclass/blob/main/javascript/effect/gameEffect01.html" target="_blank">HTML</a>
                         <span></span><span></span><span></span><span></span>
                     </li>
                     <li>
-                        <a href="https://github.com/sukjun2/codingclass/tree/main/javascript/assets/css">CSS</a>
+                        <a href="https://github.com/sukjun2/codingclass/tree/main/javascript/assets/css" target="_blank">CSS</a>
                         <span></span><span></span><span></span><span></span>
                     </li>
                 </ul>
@@ -730,6 +833,7 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script src="../assets/js/music.js"></script>
         <script src="../assets/js/searchGame.js"></script>
+        <script src="../assets/js/tetrisGame.js"></script>
         <script src="../assets/js/memory.js"></script>
         <script src="../assets/js/highlight.min.js"></script>
         <script>
@@ -769,6 +873,7 @@
             $(".music__wrap").draggable();
             $(".memory__wrap").draggable();
             $(".search__wrap").draggable();
+            $(".tetris__wrap").draggable();
             $(".search__result").draggable();
             $(".memory__result").draggable();
 
@@ -835,24 +940,28 @@
             // memory__result
             document.querySelector(".music__wrap").addEventListener("mousedown", () => {
                 document.querySelector(".music__wrap").style.zIndex = 1000;
+                document.querySelector(".tetris__wrap").style.zIndex = 0;
                 document.querySelector(".memory__wrap").style.zIndex = 0;
                 document.querySelector(".search__wrap").style.zIndex = 0;
             });
             document.querySelector(".memory__wrap").addEventListener("mousedown", () => {
                 document.querySelector(".memory__wrap").style.zIndex = 1000;
                 document.querySelector(".music__wrap").style.zIndex = 0;
+                document.querySelector(".tetris__wrap").style.zIndex = 0;
                 document.querySelector(".search__wrap").style.zIndex = 0;
             });
             document.querySelector(".search__wrap").addEventListener("mousedown", () => {
                 document.querySelector(".search__wrap").style.zIndex = 1000;
                 document.querySelector(".music__wrap").style.zIndex = 0;
+                document.querySelector(".tetris__wrap").style.zIndex = 0;
                 document.querySelector(".memory__wrap").style.zIndex = 0;
             });
-
-            // SameSite 쿠키 설정
-            document.cookie = "safeCookie1=foo; SameSite=Lax";
-            document.cookie = "safeCookie2=foo";
-            document.cookie = "crossCookie=bar; SameSite=None; Secure";
+            document.querySelector(".tetris__wrap").addEventListener("mousedown", () => {
+                document.querySelector(".tetris__wrap").style.zIndex = 1000;
+                document.querySelector(".search__wrap").style.zIndex = 0;
+                document.querySelector(".music__wrap").style.zIndex = 0;
+                document.querySelector(".memory__wrap").style.zIndex = 0;
+            });
         </script>
     </body>
 </html>

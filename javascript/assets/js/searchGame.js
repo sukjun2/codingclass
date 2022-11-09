@@ -569,11 +569,12 @@ searchInput.addEventListener("input", checkInput);
 searchRestart.addEventListener("click", restart);
 
 // 게임 ON / OFF
-GameToggle.addEventListener("click", () => {
+GameToggle.addEventListener("dblclick", () => {
     GameWrap.classList.toggle("show");
+    $(".search__wrap").css("z-index", "1000");
+    $(".tetris__wrapper").css("z-index", "0");
     $(".memory__wrap").css("z-index", "0");
     $(".music__wrap").css("z-index", "0");
-    $(".search__wrap").css("z-index", "1000");
 });
 
 // 게임 초기화

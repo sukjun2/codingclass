@@ -14,7 +14,8 @@
             <div class="document">
                 <h2 class="t_tit">프로그래머스 1단계 : 수박수박수박수박수박수?</h2>
                 <p class="t_desc2">
-                    길이가 n이고, "수박수박수박수...."와 같은 패턴을 유지하는 문자열을 리턴하는 함수, solution을 완성하세요. 예를들어 n이 4이면 "수박수박"을 리턴하고 3이라면 "수박수"를 리턴하면 됩니다.
+                    길이가 n이고, "수박수박수박수...."와 같은 패턴을 유지하는 문자열을 리턴하는 함수, solution을 완성하세요. 예를들어 n이 4이면 "수박수박"을 리턴하고 3이라면 "수박수"를 리턴하면
+                    됩니다.
                 </p>
                 <hr />
                 <br />
@@ -42,7 +43,7 @@
                 </table>
                 <br />
                 <div class="t_code">
-<pre><code class="language-js">function solution(n) {
+                    <pre><code class="language-js">function solution(n) {
     let answer = ''
     for(i = 1; i <= n; i++){
         answer += i % 2 == 0 ? "박" : "수";
@@ -56,7 +57,7 @@
                 <br />
                 <h3>※ 다른 사람의 풀이</h3>
                 <div class="t_code">
-<pre><code class="language-js">function waterMelon(n){
+                    <pre><code class="language-js">function waterMelon(n){
     var result = "수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박"
   
     return result.substring(0,n);
@@ -64,9 +65,7 @@
 </code></pre>
                 </div>
                 <br />
-                <div class="t_box">
-                    substring()메서드를 사용하여 result변수의 문자열 0번째 ~ n번째까지 추출해내면 됩니다.
-                </div>
+                <div class="t_box">substring()메서드를 사용하여 result변수의 문자열 0번째 ~ n번째까지 추출해내면 됩니다.</div>
             </div>
         </main>
         <!-- //main -->

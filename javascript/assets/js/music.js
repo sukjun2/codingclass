@@ -310,10 +310,11 @@ List.addEventListener("click", () => {
 Close.addEventListener("click", () => {
     musicFooter.classList.add("hide");
 });
-MusicFolder.addEventListener("click", () => {
+MusicFolder.addEventListener("dblclick", () => {
     Music.classList.toggle("show");
     $(".music__wrap").css("z-index", "1000");
     $(".memory__wrap").css("z-index", "0");
+    $(".tetris__wrapper").css("z-index", "0");
     $(".search__wrap").css("z-index", "0");
     pauseMusic();
 });
