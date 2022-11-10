@@ -6,9 +6,9 @@ const startBtn = document.querySelector(".message");
 const tetScore = document.querySelector(".tetris__score .tetScore");
 const tetResultWrap = document.querySelector(".tetris__result");
 const tetResult = document.querySelector(".tetris__result .tetris_result");
-const tetRestart = document.querySelector(".tetris_restart");
+const restartTet = document.querySelector(".tetris_restart");
 
-// variables
+// variabless
 let rows = 14;
 let cols = 10;
 let tetrisScore = 0;
@@ -215,15 +215,6 @@ function init() {
         prependNewLine(); //블록 라인 만들기
     }
     // renderBlocks(); //블록 출력하기
-
-    const seizedLi = document.querySelector(".playground > ul > li > ul");
-
-    console.log(seizedLi.childNodes);
-    seizedLi.childNodes.forEach((child) => {
-        if (child.classList.contains(".seized")) {
-            endTetris();
-        }
-    });
 }
 
 // 블록 만들기
@@ -373,7 +364,7 @@ document.addEventListener("keydown", (e) => {
 // 게임 끝났을 때
 function endTetris() {
     // 시작 버튼 만들기
-    tetrisLoading.style.display = "block";
+    tetrisLoading.style.display = "none";
     startBtn.style.display = "none";
 
     // 메시지 출력
@@ -396,11 +387,24 @@ startBtn.addEventListener("click", () => {
     generateNewBlock(); //블록 만들기
 });
 
-// 닫기 버튼
-const tetrisClose = document.querySelector(".tetris__wrapper");
+// 다시 시작하기
+function restartTetris() {
+    tetResultWrap.classList.remove("show");
 
-tetrisClose.addEventListener("click", () => {
-    tetrisWrap.classList.remove("show");
+    init();
+    tetrisScore = 0;
+    tetScore.textContent = tetrisScore;
+}
+restartTet.addEventListener("click", restartTetris);
+
+// 닫기 버튼
+const tetrisClose = document.querySelectorAll(".tetris__wrapper");
+tetrisClose.forEach((e) => {
+    e.addEventListener("click", () => {
+        tetrisWrap.classList.remove("show");
+        tetrisLoading.style.display = "block";
+        endTetris();
+    });
 });
 
 init();

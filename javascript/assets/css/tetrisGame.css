@@ -20,8 +20,6 @@ em {
     padding: 10px;
     border: 5px solid #000;
 }
-.tetris__start {
-}
 .tetris__restart {
 }
 .tetris__play {
@@ -57,9 +55,9 @@ em {
 }
 
 .tetris__result {
-    position: fixed;
-    right: 35vw;
-    top: 20vw;
+    position: absolute;
+    top: 30%;
+    right: 20%;
     width: 30vw;
     height: 15vw;
     /* z-index: 10000; */
@@ -99,7 +97,6 @@ em {
     padding: 10px 20px;
     border-radius: 20px;
 }
-.tetris_restart {}
 
 .eightbit-btn {
     position: absolute;
@@ -144,7 +141,13 @@ em {
     border-left: 6px black solid;
     border-right: 6px black solid;
 }
+.tetris__svg__wrap {
+    position: relative;
+}
 .eightbit-btn--reset {
+    position: absolute;
+    left: 50%;
+    top: 750%;
     background: #e76e55;
     box-shadow: inset -4px -4px 0px 0px #8c2022;
 }
@@ -280,6 +283,11 @@ em {
 }
 
 /* loading */
+.tetris__loading .tetris__wrapper{
+    right: 10px;
+    top: 10px;
+}
+
 .tetris__loading {
     width: 1000px;
     height: 750px;
