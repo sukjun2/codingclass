@@ -53,28 +53,22 @@ em {
     border: 1px solid #666;
     background: #000;
 }
-
 .tetris__result {
+    position: relative;
     position: absolute;
-    top: 30%;
-    right: 20%;
-    width: 30vw;
-    height: 15vw;
-    /* z-index: 10000; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    left: 10%;
+    top: 25%;
     display: none;
-    border-radius: 20px;
-    background: rgba(1, 29, 63, 0.9);
     color: #fff;
-    line-height: 1.5;
-    text-align: center;
 }
-
 .tetris__result .tetris_result {
-    font-size: 30px;
-    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.8);
+    font-size: 60px;
+    text-align: center;
+    width: 800px;
+    height: 400px;
+    padding-top: 80px;
+    border-radius: 50px;
 }
 
 .tetris__result.show {
@@ -88,20 +82,11 @@ em {
     font-size: 1.4vw;
     line-height: 1.4;
 }
-.tetris__result .restart {
-    background: #946bc5;
-    color: #fff;
-    border: 0;
-    font-size: 20px;
-    margin-top: 10px;
-    padding: 10px 20px;
-    border-radius: 20px;
-}
 
 .eightbit-btn {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, -390%);
+    transform: translate(-50%, -300%);
     background: #92cd41;
     display: inline-block;
     position: relative;
@@ -147,7 +132,7 @@ em {
 .eightbit-btn--reset {
     position: absolute;
     left: 50%;
-    top: 750%;
+    top: 150%;
     background: #e76e55;
     box-shadow: inset -4px -4px 0px 0px #8c2022;
 }

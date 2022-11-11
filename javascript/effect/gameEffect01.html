@@ -7,7 +7,8 @@
         <title>게임 이펙트01</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/bg.css" />
+        <!-- <link rel="stylesheet" href="../assets/css/bg.css" /> -->
+        <link rel="stylesheet" href="../assets/css/bg2.css" />
         <link rel="stylesheet" href="../assets/css/game.css" />
         <link rel="stylesheet" href="../assets/css/music.css" />
         <link rel="stylesheet" href="../assets/css/memory.css" />
@@ -21,6 +22,15 @@
             <div class="time"></div>
         </header>
         <!-- //header -->
+
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="title">
+            <span> GAME Effects </span>
+            <br />
+            <span> create by coturtle </span>
+        </div>
 
         <div class="cursor">
             <img src="../assets/img/cursor1.png" alt="" />
@@ -141,10 +151,8 @@
                         <div>Scroe : <em class="tetScore">0</em></div>
                     </div>
                     <div class="tetris__result">
-                        <div class="tetris__svg__wrap">
-                            <div class="tetris_result"></div>
-                            <button class="eightbit-btn eightbit-btn--reset tetris_restart">Restart</button>
-                        </div>
+                        <div class="tetris_result"></div>
+                        <button class="eightbit-btn eightbit-btn--reset tetris_restart">Restart</button>
                     </div>
                     <div class="banana"></div>
                     <div class="tetris__wrapper">
@@ -886,6 +894,7 @@
             $(".tetris__wrap").draggable();
             $(".search__result").draggable();
             $(".memory__result").draggable();
+            $(".tetris__result").draggable();
 
             function printTime() {
                 const clock = document.querySelector(".time");
