@@ -2,6 +2,19 @@ em {
     font-style: normal;
 }
 
+/* audio */
+.tetris__audio {
+    position: absolute;
+    right: 22%;
+    top: 20px;
+    width: 24px;
+}
+
+.tetris__audio .play_tetris {
+    display: none;
+}
+/* //audio */
+
 .tetris__wrap {
     display: none;
     position: relative;
@@ -268,7 +281,7 @@ em {
 }
 
 /* loading */
-.tetris__loading .tetris__wrapper{
+.tetris__loading .tetris__wrapper {
     right: 10px;
     top: 10px;
 }

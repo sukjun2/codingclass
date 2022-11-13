@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 하샤드 수</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 하샤드 수</h2>
+                <p class="t_desc2">
+                    양의 정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야 합니다. 예를 들어 18의 자릿수 합은 1+8=9이고, 18은 9로 나누어 떨어지므로 18은 하샤드 수입니다. 자연수 x를 입력받아
+                    x가 하샤드 수인지 아닌지 검사하는 함수, solution을 완성해주세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">x는 1 이상, 10000 이하인 정수입니다.</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>arr</th>
+                            <th>return</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(x) {
+    let answer = true;
+    let z = x.toString().split('').map(e => parseInt(e)).reduce((a, b) => a + b);
+    console.log(z);
+    return answer = x % z === 0 ? true : false;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    숫자를 문자화, 배열화하고 map(parseInt())메서드로 배열내의 문자를 숫자화합니다. 다음 reduce()메서드로 숫자를 더해준 뒤 변수 x를 z로 나눈 나머지가 0이라면 하샤드 수이므로, true를
+                    아니라면 false를 반환하도록 합니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(x) {
+    var a = 0;
+    var s = (x+"").split("").map(Number);
+
+    for(let i of s){
+        a += i;
+    }
+
+    return x%a == 0 ? true : false;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    s = x에 빈 문자열을 더해 문자화하고 배열로만들어 내부를 숫자화 합니다. for of문을 사용하여 s변수의 인덱스 값을 합한 a값으로 x를 나눈 나머지 값이 0이라면 true 아니라면 fasle를
+                    반환합니다.
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>

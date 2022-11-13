@@ -8,6 +8,12 @@ const tetResultWrap = document.querySelector(".tetris__result");
 const tetResult = document.querySelector(".tetris__result .tetris_result");
 const restartTet = document.querySelector(".tetris_restart");
 
+const tetrisAudio = document.querySelector("#taudio");
+const tetrisAudioComplete = document.querySelector("#taudio_complete");
+const tetrisAudioFail = document.querySelector("#taudio_fail");
+const tetrisAudioPlay = document.querySelector(".play_tetris");
+const tetrisAudioPause = document.querySelector(".stop_tetris");
+
 // variabless
 let rows = 14;
 let cols = 10;
@@ -209,6 +215,19 @@ const blocks = {
         ],
     ],
 };
+
+// 시작 후 음악 On/Off
+tetrisAudioPlay.addEventListener("click", () => {
+    tetrisAudioPlay.style.display = "none";
+    tetrisAudioPause.style.display = "block";
+    tetrisAudio.pause();
+});
+tetrisAudioPause.addEventListener("click", () => {
+    tetrisAudioPlay.style.display = "block";
+    tetrisAudioPause.style.display = "none";
+    tetrisAudio.play();
+});
+
 // 시작하기
 function init() {
     tempMovingItem = { ...movingItem };
@@ -355,6 +374,9 @@ function tetrisGameover() {
     // 시작 버튼 만들기
     tetrisLoading.style.display = "none";
     startBtn.style.display = "none";
+    tetrisAudioPlay.style.display = "none";
+    tetrisAudioPause.style.display = "block";
+    tetrisAudio.pause();
 
     // 메시지 출력
     tetResultWrap.classList.add("show");
@@ -397,6 +419,9 @@ tetrisFolder.addEventListener("dblclick", () => {
 startBtn.addEventListener("click", () => {
     tetrisLoading.classList.add("hide");
     generateNewBlock(); //블록 만들기
+    tetrisAudio.play();
+    tetrisAudioPlay.style.display = "block";
+    tetrisAudioPause.style.display = "none";
 });
 
 // 리셋하기
@@ -414,6 +439,9 @@ restartTet.addEventListener("click", () => {
     tetrisScore = 0;
     tetScore.textContent = tetrisScore;
     stopTetris = false;
+    tetrisAudioPlay.style.display = "block";
+    tetrisAudioPause.style.display = "none";
+    tetrisAudio.play();
     generateNewBlock();
 });
 
@@ -424,6 +452,9 @@ tetrisClose.forEach((e) => {
         tetrisWrap.classList.remove("show");
         tetrisLoading.style.display = "block";
         stopTetris = true;
+        tetrisAudioPlay.style.display = "none";
+        tetrisAudioPause.style.display = "block";
+        tetrisAudio.pause();
         tetrisGameover();
     });
 });
