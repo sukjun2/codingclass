@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 정수 제곱근 판별</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 정수 제곱근 판별</h2>
+                <p class="t_desc2">
+                    임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다. n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을
+                    리턴하는 함수를 완성하세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">N의 범위 : n은 1이상, 50000000000000 이하인 양의 정수입니다.</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>n</th>
+                            <th>answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>121</td>
+                            <td>144</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>-1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(n) {
+    let answer = 0;
+    answer = Math.ceil(Math.sqrt(n)) * Math.ceil(Math.sqrt(n)) === n ? Math.ceil((Math.sqrt(n)) + 1) * Math.ceil((Math.sqrt(n) + 1)) : -1;
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    변수 n의 루트값을 2번 곱한 갑이 n과 같다면 루트n에 +1한 값을 2번 곱하여 리턴하고, 만약 n과 다르다면 -1을 반환하도록 합니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+<pre><code class="language-js">function nextSqaure(n){
+    var result = 0;
+    var x = 0;
+    while (x*x &lt; n){
+      x++;
+    }
+    if (x*x == n){
+      x++;
+      result = x*x; 
+    }else{
+      result = 'no';
+    }
+  
+    return result;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    while문을 사용했네요, x의 제곱이 n보다 작을때 1을 더하고, 만약 1을 더한 x의 제곱이 n과 같다면 x에 1을 더한 제곱값을 result에 저장하고 출력해줍니다.
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
