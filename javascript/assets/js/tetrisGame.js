@@ -376,6 +376,8 @@ function tetrisGameover() {
     // 시작 버튼 만들기
     tetrisLoading.style.display = "none";
     startBtn.style.display = "none";
+
+    // 오디오
     tetrisAudioPlay.style.display = "none";
     tetrisAudioPause.style.display = "block";
     tetrisAudio.pause();
@@ -422,6 +424,8 @@ tetrisFolder.addEventListener("dblclick", () => {
 startBtn.addEventListener("click", () => {
     tetrisLoading.classList.add("hide");
     generateNewBlock(); //블록 만들기
+
+    // 오디오
     tetrisAudio.play();
     tetrisAudioPlay.style.display = "block";
     tetrisAudioPause.style.display = "none";
