@@ -315,6 +315,8 @@ function checkMatch() {
         });
         if (matched) {
             child.remove();
+            duration = duration - 20;
+            searchAudioComplete.play();
             prependNewLine();
             tetrisScore++;
             tetScore.textContent = tetrisScore;
@@ -377,6 +379,7 @@ function tetrisGameover() {
     tetrisAudioPlay.style.display = "none";
     tetrisAudioPause.style.display = "block";
     tetrisAudio.pause();
+    tetrisAudioFail.play();
 
     // 메시지 출력
     tetResultWrap.classList.add("show");
@@ -428,7 +431,8 @@ startBtn.addEventListener("click", () => {
 function restartTetris() {
     tetResultWrap.classList.remove("show");
     stopTetris = true;
-
+    duration = 500;
+    
     const tetrisMinos = playground.querySelectorAll("li > ul > li");
     tetrisMinos.forEach((minos) => {
         minos.className = "";
