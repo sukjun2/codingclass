@@ -1,12 +1,125 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gsap02</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>gsap02</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .img-wrap {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                margin: 0 auto;
+                width: 1200px;
+                margin-top: 1000px;
+            }
+            .img {
+                height: 600px;
+                background-size: cover;
+                background-position: center center;
+            }
+            .img:nth-child(1) {
+                background-image: url("https://images.unsplash.com/photo-1668429090678-4f0e6759d489?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8M3x8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(2) {
+                background-image: url("https://images.unsplash.com/photo-1668510137538-0343f4fdedbd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2NHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(3) {
+                background-image: url("https://images.unsplash.com/photo-1668448388988-a901c54d954e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3NXx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(4) {
+                background-image: url("https://images.unsplash.com/photo-1667407644113-442aff9d6979?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(5) {
+                background-image: url("https://images.unsplash.com/photo-1666960112215-5540b2920aee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(6) {
+                background-image: url("https://images.unsplash.com/photo-1666607644665-6762ba4089a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(7) {
+                background-image: url("https://images.unsplash.com/photo-1661274044982-8fa0411085e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(8) {
+                background-image: url("https://images.unsplash.com/photo-1630416268197-8e14b3770960?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MzV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
+            }
+            .img:nth-child(9) {
+                background-image: url("https://images.unsplash.com/photo-1654072876471-ab1018d097e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(10) {
+                background-image: url("https://images.unsplash.com/photo-1652347465364-22625aacb6fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(11) {
+                background-image: url("https://images.unsplash.com/photo-1649427249880-8267bbb62f02?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(12) {
+                background-image: url("https://images.unsplash.com/photo-1648807763220-703398bc459f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(13) {
+                background-image: url("https://images.unsplash.com/photo-1647885504993-a69aa985ac1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(14) {
+                background-image: url("https://images.unsplash.com/photo-1632219477629-6c2c5f43a6e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MzF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+            }
+            .img:nth-child(15) {
+                background-image: url("https://images.unsplash.com/photo-1630609863684-ea2f38bfc434?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MzR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+            }
+        </style>
+    </head>
+    <body>
+        <section class="img-wrap">
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+        <script>
+            gsap.registerPlugin(ScrollTrigger);
+
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
+            requestAnimationFrame(raf);
+
+            const tl = gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: ".img-wrap .img",
+                        scrub: true,
+                    },
+                })
+                .to(".img", {
+                    y: -1000,
+                    scrub: true,
+                    stagger: 0.2,
+                    easing: "power1.out",
+                });
+        </script>
+    </body>
 </html>
