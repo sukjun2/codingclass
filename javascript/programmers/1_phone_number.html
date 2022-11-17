@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 핸드폰 번호 가리기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 핸드폰 번호 가리기</h2>
+                <p class="t_desc2">
+                    프로그래머스 모바일은 개인정보 보호를 위해 고지서를 보낼 때 고객들의 전화번호의 일부를 가립니다. 전화번호가 문자열 phone_number로 주어졌을 때, 전화번호의 뒷 4자리를 제외한 나머지
+                    숫자를 전부 *으로 가린 문자열을 리턴하는 함수, solution을 완성해주세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">phone_number는 길이 4 이상, 20이하인 문자열입니다.</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>phone_number</th>
+                            <th>return</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"01033334444"</td>
+                            <td>"*******4444"</td>
+                        </tr>
+                        <tr>
+                            <td>"027778888"</td>
+                            <td>"*****8888"</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(phone_number) {
+    let answer = '';
+    answer = phone_number.slice(-4).padStart(phone_number.length, '*');
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">slice()메서드로 -4의 위치(끝에서 4번째)부터 반환하고 padStart()메서드로 변수의 길이 값 만큼 문자를 출력하고 모자른 길이는 앞에 '*'을 채워넣습니다.</div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">const solution = n => [...n].fill("*", 0, n.length-4).join("")
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">문자열 n 을 배열로 바꾸고, 배열의 첫번째부터 마지막에서 4번째 값 전까지 배열크기만큼 * 로 채우고, 이 후에 join()메서드를 사용해 문자로 반환합니다. (말이 안나오네요...)</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
