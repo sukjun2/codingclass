@@ -1,6 +1,6 @@
 <ul>
-    <li><a href="blogCategory.php?category=javascript">javascript</a></li>
-    <li><a href="blogCategory.php?category=jquery">jquery</a></li>
-    <li><a href="blogCategory.php?category=html">html</a></li>
-    <li><a href="blogCategory.php?category=css">css</a></li>
+    <li><a href="blogCategory.php?category=JAVASCRIPT">JAVASCRIPT</a></li>
+    <li><a href="blogCategory.php?category=JQUERY">JQUERY</a></li>
+    <li><a href="blogCategory.php?category=HTML">HTML</a></li>
+    <li><a href="blogCategory.php?category=CSS">CSS</a></li>
 </ul>

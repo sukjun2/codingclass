@@ -10,40 +10,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 수정</title>
+    <title>boardModifySave</title>
 </head>
 <body>
-    
-<?php
-    $BoardID = $_POST['BoardID'];
-    $boardTitle = $_POST['boardTitle'];
-    $boardContents = $_POST['boardContents'];
-    $youPass = $_POST['youPass'];
-    $MemberID = $_SESSION['MemberID'];
+    <?php
+        $boardID = $_POST['boardID'];
+        $boardTitle = $_POST['boardTitle'];
+        $boardContents = $_POST['boardContents'];
+        $youPass = $_POST['youPass'];
+        $memberID = $_SESSION['memberID'];
+        $boardTitle = $connect -> real_escape_string($boardTitle);
+        $boardContents = $connect -> real_escape_string($boardContents);
 
-    echo $BoardID;
-    
+        $sql = "SELECT youPass, memberID FROM myMember WHERE memberID = {$memberID};";
+        $result = $connect -> query($sql);
 
-    $boardTitle = $connect -> real_escape_string($boardTitle);
-    $boardContents = $connect -> real_escape_string($boardContents);
+        $memberInfo = $result -> fetch_array(MYSQLI_ASSOC);
 
-    $sql = "SELECT youPass, MemberID FROM myMember WHERE MemberID = {$MemberID}";
-    $result = $connect -> query($sql);
+        if($memberInfo['youPass'] === $youPass && $memberInfo['memberID'] === $memberID) {
+            $sql = "UPDATE myBoard SET boardTitle = '$boardTitle', boardContents = '$boardContents' WHERE boardID={$boardID}";
+            $connect -> query($sql);
+        }
+        else {
+            echo "<script>alert('비밀번호가 틀렸습니다. 다시 한번 확인해 주세요')</script>";
+        }
+    ?>
 
-    $memberInfo = $result -> fetch_array(MYSQLI_ASSOC);
-
-    if($memberInfo['youPass'] === $youPass && $memberInfo['MemberID'] === $MemberID){
-        $sql = "UPDATE myBoard SET boardTitle = '{$boardTitle}', boardContents = '{$boardContents}' WHERE BoardID = '{$BoardID}'";
-        $connect -> query($sql);
-    } else {
-        echo "<script>alert('비밀번호가 일치하지 않습니다. 다시 한번 확인해주세요!!')</script>";
-    }
-
-    
-?>
-<script>
-    location.href ="board.php";
-</script>
-
+    <script>
+        location.href = "./board.php";
+    </script>
 </body>
 </html>

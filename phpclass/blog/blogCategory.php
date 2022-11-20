@@ -4,7 +4,7 @@
 
     $category = $_GET['category'];
 
-    $categorySql = "SELECT * FROM myBlog WHERE blogDelete=0 and blogCategory='$category' ORDER BY BlogID DESC LIMIT 10";
+    $categorySql = "SELECT * FROM myBlog WHERE blogDelete=0 and blogCategory='$category' ORDER BY blogID DESC LIMIT 10";
     $categoryResult = $connect -> query($categorySql);
     $categoryInfo = $categoryResult -> fetch_array(MYSQLI_ASSOC);
     $categoryCount = $categoryResult -> num_rows;
@@ -19,7 +19,7 @@
     <title>PHP 사이트 만들기</title>
     
     <?php
-        include "../include/head.php";
+        include "../include/link.php";
     ?>
 </head>
 <body>
@@ -36,29 +36,28 @@
     <main id="main">
         <section id="blog" class="container">
             <div class="blog__inner"> 
-                <div class="blog__title" style="background-image:url(../assets/img/<?=$categoryInfo['blogCategory']?>.jpg">
+                <div class="blog__title">
                     <h2><?=$categoryInfo['blogCategory']?> 카테고리</h2>
                     <p><?=$categoryInfo['blogCategory']?>와 관련된 글이 <?=$categoryCount?>개 있습니다.</p>
                 </div>
                 <!-- // blog__title -->
 
                 <div class="blog__contents">
-                    <div class="card__inner horizontal">
+                    <div class="card__inner horizon">
                         <?php
                             foreach($categoryResult as $blog) { ?>
                                 <div class="card">
-                                    <figure>                                        
-                                        <a href="blogView.php?blogID=<?=$blog['blogID']?>" class="go" title="컨텐츠 바로가기">
-                                            <img src="../assets/blog/<?=$blog['blogImgSrc']?>" alt="카드1번">
-                                        </a>
+                                    <figure>
+                                        <img src="../asset/img/blog/<?=$blog['blogImgSrc']?>" alt="카드1번">
+                                        <a href="blogView.php?blogID=<?=$blog['blogID']?>" class="go" title="컨텐츠 바로가기"></a>
                                     </figure>
                                     <div>
                                         <a href="blogView.php?blogID=<?=$blog['blogID']?>">
                                             <h3><?=$blog['blogTitle']?></h3>
-                                            <!-- <p><?=$blog['blogContents']?></p> -->
+                                            <p><?=$blog['blogContents']?></p>
                                         </a>
                                     </div>
-                                    <span class="Vcategory"><?=$blog['blogCategory']?></span>
+                                    <span class="cate"><?=$blog['blogCategory']?></span>
                                 </div>
                         <?php
                         }
@@ -71,11 +70,11 @@
                 <div class="blog__aside">
                     <div class="blog__aside__intro">
                         <div class="img">
-                            <img src="../assets/img/banner_bg01.jpg" alt="배너 이미지">
+                            <img src="../asset/img/banner.jpg" alt="기본이미지">
                         </div>
-                        <div class="desc">
-                            어떤 일이라도 <em>노력</em>하고 즐기면 그 결과는 <em>빛</em>을 바란다고 생각합니다.
-                        </div>
+                        <p class="intro">
+                            어떤 일이라도 노력하고 즐기면 그 결과는 빛을 바란다고 생각합니다.
+                        </p>
                     </div>
                     <!-- // blog__aside__intro -->
 
@@ -117,6 +116,7 @@
                     <!-- // blog__aside__comment -->
 
                     <!-- <div class="blog__aside__ad">
+
                     </div> -->
                     <!-- // blog__aside__ad -->
                 </div>
@@ -133,8 +133,11 @@
     </main>
     <!-- // main -->
 
-    <?php include "../include/footer.php"?>
+    <?php include "../include/footer.php";?>
     <!-- //footer -->
+
+    <?php include "../login/login.php" ?>
+    <!-- // login popup -->
 
     <script src="../asset/js/custom.js"></script>
 </body>

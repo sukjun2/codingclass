@@ -1,14 +1,6 @@
 <?php
     include "../connect/connect.php";
     include "../connect/session.php";
-
-    $searchKeyword = $_GET['searchKeyword'];
-
-    $blogSql = "SELECT * FROM myBlog WHERE blogDelete=0 and blogContents LIKE '%{$searchKeyword}%' ORDER BY BlogID DESC";
-    $blogResult = $connect -> query($blogSql);
-    $blogInfo = $blogResult -> fetch_array(MYSQLI_ASSOC);
-    $blogCount = $blogResult -> num_rows;
-
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +9,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP 사이트 만들기</title>
-    
+    <title>blogSearch</title>
     <?php
-        include "../include/head.php";
+        include "../include/link.php";
     ?>
 </head>
 <body>
@@ -35,168 +26,128 @@
     <!-- // header -->
 
     <main id="main">
-        <section id="blog" class="container">
-            <div class="blog__inner"> 
-                <div class="blog__title">
-                    <h2><?=$searchKeyword?> 키워드</h2>
-                    <p><?=$searchKeyword?>와 관련된 글이 <?=$blogCount?>개 있습니다.</p>
-                </div>
-                <!-- // blog__title -->
-
-                <div class="blog__contents">
-                    <div class="card__inner horizontal">
-                        <?php
-                            if(isset($_GET['page'])) {
-                                $page = (int)$_GET['page'];
-                            }
-                            else {
-                                $page = 1;
-                            }
-                            $viewNum = 6;
-                            $viewLimit = ($viewNum * $page) - $viewNum;
-                            $sql = "SELECT * FROM myBlog WHERE blogDelete=0 and blogContents LIKE '%{$searchKeyword}%' ORDER BY BlogID DESC LIMIT {$viewLimit}, {$viewNum};";
-                            $result = $connect -> query($sql);
-                        ?>
-                        <?php
-                            foreach($result as $blog) { ?>
-                                <div class="card">
-                                    <figure>
-                                        <img src="../assets/blog/<?=$blog['blogImgSrc']?>" alt="카드1번">
-                                        <a href="blogView.php?blogID=<?=$blog['blogID']?>" class="go" title="컨텐츠 바로가기"></a>
-                                    </figure>
-                                    <div>
-                                        <a href="blogView.php?blogID=<?=$blog['blogID']?>">
-                                            <h3><?=$blog['blogTitle']?></h3>
-                                            <!-- <p><?=$blog['blogContents']?></p> -->
-                                        </a>
-                                    </div>
-                                    <span class="Vcategory"><?=$blog['blogCategory']?></span>
-                                </div>
-                        <?php
+        <section id="board" class="container">
+            <h2>게시판 영역 입니다.</h2>
+            <div class="board__inner">
+                <div class="board__title">
+                    <h3>검색 결과 게시판</h3>
+                    <?php
+                        function msg($alert) {
+                            echo "<p>총 ".$alert." 건이 검색 되었습니다.</p>";
                         }
+
+                        if(isset($_GET['page'])) {
+                            $page = (int)$_GET['page'];
+                        }
+                        else {
+                            $page = 1;
+                        }
+                        echo $page." page";
+
+                        $searchKeyword = $_GET['searchKeyword'];
+                        $searchOption = 'title';
+                        $searchKeyword = $connect -> real_escape_string(trim($searchKeyword));
+                        echo $sql;
+                        $sql = "SELECT b.blogID, b.blogTitle, b.blogContents, m.youName, b.blogRegTime, b.blogView,b.blogImgSrc,b.blogCategory FROM myBlog b JOIN myMember m ON(b.memberID = m.memberID) ";
+                        switch($searchOption) {
+                            case "title":
+                                $sql .= "WHERE b.blogTitle LIKE '%{$searchKeyword}%' ORDER BY blogID DESC ";
+                                break;
+                        }
+
+                        $result = $connect -> query($sql);
+
+                        $totalCount = $result -> num_rows;
+                        msg($totalCount);
+                    ?>
+                    <a 
+                        href="blog.php"
+                        style="border:1px solid #000; position:absolute; left: 3px; top:214px; border-radius:20px; padding:5px 10px;"
+                    >돌아가기</a>
+                </div>
+                <div class="card__inner">
+                <?php
+                    $viewNum = 8;
+                    $viewLimit = ($viewNum * $page) - $viewNum;
+
+                    $sql .= "LIMIT {$viewLimit}, {$viewNum};";
+                    $result = $connect -> query($sql);
+                    if($result) {
+                        foreach($result as $blog) { 
+                ?>
+                            <div class="card">
+                                <figure>
+                                    <img src="../asset/img/blog/<?=$blog['blogImgSrc']?>" alt="카드1번">
+                                    <a href="blogView.php?blogID=<?=$blog['blogID']?>" class="go" title="컨텐츠 바로가기"></a>
+                                </figure>
+                                <div>
+                                    <a href="blogView.php?blogID=<?=$blog['blogID']?>">
+                                        <h3><?=$blog['blogTitle']?></h3>
+                                        <p><?=$blog['blogContents']?></p>
+                                    </a>
+                                </div>
+                                <span class="cate"><?=$blog['blogCategory']?></span>
+                            </div>
+                <?php
+                        }
+                    }
+                ?>
+                </div>
+                <div class="board__pages">
+                    <ul>
+                        <?php
+                            // 총 페이지 개수
+                            $boardCount = ceil($totalCount / $viewNum);
+
+                            // 현재 페이지를 기준으로 보여주고 싶은 개수
+                            $pageCurrent = 5;
+                            $startPage = $page - $pageCurrent;
+                            $endPage = $page + $pageCurrent;
+
+                            // 처음 페이지 초기화
+                            if($startPage < 1) {
+                                $startPage = 1;
+                            }
+
+                            // 마지막 페이지 초기화
+                            if($endPage > $boardCount) {
+                                $endPage = $boardCount;
+                            }
+
+                            // 이전, 처음
+                            if($page !== 1) {
+                                $prevPage = $page - 1;
+                                echo "<li><a href='./blogSearch.php?page=1&searchKeyword={$searchKeyword}'>처음으로</a></li>";
+                                echo "<li><a href='./blogSearch.php?page={$prevPage}&searchKeyword={$searchKeyword}'>이전</a></li>";
+                            }
+                            
+                            // 페이지 넘버 표시
+                            for($i = $startPage; $i <= $endPage; $i++) {
+                                $active = "";
+                                if($i === $page) $active = "active";
+                                echo "<li class = '{$active}'><a href='./blogSearch.php?page={$i}&searchKeyword={$searchKeyword}'>$i</a></li>";
+                            }
+
+                            // 다음, 마지막
+                            if($page != $endPage) {
+                                $nextPage = $page + 1;
+                                echo "<li><a href='./blogSearch.php?page={$nextPage}&searchKeyword={$searchKeyword}'>다음</a></li>";
+                                echo "<li><a href='./blogSearch.php?page={$boardCount}&searchKeyword={$searchKeyword}'>마지막</a></li>";
+                            }
                         ?>
-                    </div>
-                    <!-- // blog__contents__card -->
-                    <div class="card__pages">
-                            <ul>
-                                <?php
-                                    $sql = "SELECT count(BlogID) FROM myBlog WHERE blogDelete=0 and blogContents LIKE '%{$searchKeyword}%' ";
-                                    $result = $connect -> query($sql);
-
-                                    $boardCount = $result -> fetch_array(MYSQLI_ASSOC);
-                                    $boardCount = $boardCount['count(BlogID)'];
-
-                                    // 총 페이지 개수
-                                    $boardCount = ceil($boardCount / $viewNum);
-
-                                    // 현재 페이지를 기준으로 보여주고 싶은 개수
-                                    $pageCurrent = 5;
-                                    $startPage = $page - $pageCurrent;
-                                    $endPage = $page + $pageCurrent;
-
-                                    // 처음 페이지 초기화
-                                    if($startPage < 1) {
-                                        $startPage = 1;
-                                    }
-
-                                    // 마지막 페이지 초기화
-                                    if($endPage > $boardCount) {
-                                        $endPage = $boardCount;
-                                    }
-
-                                    // 이전, 처음
-                                    
-                                    if($page !== 1) {
-                                        $prevPage = $page - 1;
-                                        echo "<li><a href='./blogSearch.php?page=1&searchKeyword={$searchKeyword}'><<</a></li>";
-                                        echo "<li><a href='./blogSearch.php?page={$prevPage}&searchKeyword={$searchKeyword}'><</a></li>";
-                                    }
-                                    
-                                    // 페이지 넘버 표시
-                                    for($i = $startPage; $i <= $endPage; $i++) {
-                                        $active = "";
-                                        if($i === $page) $active = "active";
-                                        echo "<li class = '{$active}'><a href='./blogSearch.php?page={$i}&searchKeyword={$searchKeyword}'>$i</a></li>";
-                                    }
-
-                                    if($page != $endPage) {
-                                        $nextPage = $page + 1;
-                                        echo "<li><a href='./blogSearch.php?page={$nextPage}&searchKeyword={$searchKeyword}'>></a></li>";
-                                        echo "<li><a href='./blogSearch.php?page={$boardCount}&searchKeyword={$searchKeyword}'>>></a></li>";
-                                    }
-                                ?>
-                            </ul>
-                        </div>
+                    </ul>
                 </div>
-                <!-- // blog__contents -->
-
-                <div class="blog__aside">
-                    <div class="blog__aside__intro">
-                        <div class="img">
-                            <img src="../assets/img/banner_bg01.jpg" alt="배너 이미지">
-                        </div>
-                        <div class="desc">
-                            어떤 일이라도 <em>노력</em>하고 즐기면 그 결과는 <em>빛</em>을 바란다고 생각합니다.
-                        </div>
-                    </div>
-                    <!-- // blog__aside__intro -->
-
-                    <div class="blog__aside__cate">
-                        <h3>카테고리</h3>
-                        <?php include "../include/category.php" ?>
-                    </div>
-                    <!-- // blog__aside__cate -->
-
-                    <div class="blog__aside__new">
-                        <h3>최신글</h3>
-                        <ul>
-                            <?php
-                                include "../include/blogNew.php";
-                            ?>
-                        </ul>
-                    </div>
-                    <!-- // blog__aside__new -->
-
-                    <div class="blog__aside__pop">
-                        <h3>인기글</h3>
-                        <ul>
-                            <?php
-                                include "../include/blogNew.php";
-                            ?>
-                        </ul>
-                    </div>
-                    <!-- // blog__aside__pop -->
-
-                    <div class="blog__aside__comment">
-                        <h3>최신 댓글</h3>
-                        <ul>
-                            <li><a href="#">학습 능률을 향상시키는 역할을</a></li>
-                            <li><a href="#">학습 능률을 향상시키는 역할을</a></li>
-                            <li><a href="#">학습 능률을 향상시키는 역할을</a></li>
-                            <li><a href="#">학습 능률을 향상시키는 역할을</a></li>
-                        </ul>
-                    </div>
-                    <!-- // blog__aside__comment -->
-
-                    <!-- <div class="blog__aside__ad">
-                    </div> -->
-                    <!-- // blog__aside__ad -->
-                </div>
-                <!-- // blog__aside -->
-
-                <div class="blog__relation">
-
-                </div>
-                <!-- // blog__relation -->
+            </div> 
             </div>
-            <!-- // blog__inner -->
         </section>
-        <!-- // blogView -->
     </main>
     <!-- // main -->
-
-    <?php include "../include/footer.php"?>
+    
+    <?php include "../include/footer.php";?>
     <!-- //footer -->
+    
+    <?php include "../login/login.php" ?>
+    <!-- // login popup -->
 
     <script src="../asset/js/custom.js"></script>
 </body>

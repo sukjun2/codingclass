@@ -1,0 +1,44 @@
+.main__blog__more,
+.main__board__more {
+  height: 30px;
+  color: #000;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  float: right;
+  margin-top: 20px;
+  padding: 20px 10px;
+  line-height: 2px;
+  transition: all 300ms;
+  border: 1px solid #333;
+}
+
+.main__blog__more:hover,
+.main__board__more:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.main__board__title {
+  display: inline-block;
+  font-size: 1rem;
+  border: 1px solid #000;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  margin-top: 50px;
+}
+
+.board__inner {
+  padding: 0px 0px 0px 0px;
+  border-bottom: 0 !important;
+}
+
+.board__inner::before {
+  height: 0px !important;
+}
+
+.card__inner > .card figure .go {
+  background-repeat: no-repeat;
+  background-position: center;
+}
