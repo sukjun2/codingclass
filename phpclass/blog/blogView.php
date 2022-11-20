@@ -12,7 +12,6 @@
     $commentSql = "SELECT * FROM mycomment WHERE BlogID = {$blogID} ORDER BY commentID DESC";
     $commentResult = $connect -> query($commentSql);
     $commentInfo = $commentResult -> fetch_array(MYSQLI_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
