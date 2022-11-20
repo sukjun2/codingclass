@@ -231,3 +231,12 @@
     margin-bottom: 80px;
     font-weight: 300;
 }
+
+
+/* 메인 보드 */
+.board__table.column4 {
+    padding: 50px 0;
+}
+.board__table.column4 h2 {
+    margin-top: 50px;
+}

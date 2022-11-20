@@ -4,4 +4,4 @@
     unset($_SESSION['youEmail']);
     unset($_SESSION['youName']);
     Header("Location: ../main/main.php");
-?>                                                                                                                         
+?>

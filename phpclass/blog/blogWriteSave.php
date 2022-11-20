@@ -61,4 +61,4 @@
         $result = $connect -> query($sql);
         $result = move_uploaded_file($blogImgTmp, $blogImgDir.$blogImgName);
         Header("Location: blog.php");
-?>
+    ?>

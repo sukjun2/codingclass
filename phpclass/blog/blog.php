@@ -36,49 +36,94 @@
                 <div class="blog__contents">
                     <article class="card__wrap">
                         <div class="card__inner column2">
-<?php
-    $sql = "SELECT * FROM myBlog WHERE blogDelete = 0 ORDER BY blogID DESC LIMIT 10";
-    $result = $connect -> query($sql);
-    // if($result){
-    //     $blogInfo = $result -> fetch_array(MYSQLI_ASSOC);
-    //     echo "<pre>";
-    //     var_dump($blogInfo);
-    //     echo "</pre>";
-    // }
-?>
-<?php foreach($result as $blog){ ?>
-    <div class="card">
-        <figure class="card__header">
-            <img src="../assets/blog/<?=$blog['blogImgSrc']?>" alt="vscode에 scss설치하기">
-            <a href="blogView.php?blogID=<?=$blog['blogID']?>" class="go"></a>
-            <span class="cate"><?=$blog['blogCategory']?></span>
-        </figure>
-        <div class="card__contents">
-            <div class="title">
-                <h3><a href="blogView.php?blogID=<?=$blog['blogID']?>"><?=$blog['blogTitle']?></a></h3>
-                <p><?=$blog['blogContents']?></p>
-            </div>
-            <div class="info">
-                <em class="author"><?=$blog['blogAuthor']?></em>
-                <span class="time"><?=date('Y-m-d', $blog['blogRegTime'])?></span>
-            </div>
-        </div>
-    </div>
-<?php } ?>
+                            <?php
+                                $sql = "SELECT * FROM myBlog WHERE blogDelete = 0 ORDER BY blogID DESC LIMIT 10";
+                                $result = $connect -> query($sql);
+                                // if($result){
+                                //     $blogInfo = $result -> fetch_array(MYSQLI_ASSOC);
+                                //     echo "<pre>";
+                                //     var_dump($blogInfo);
+                                //     echo "</pre>";
+                                // }
+
+                                if(isset($_GET['page'])) {
+                                    $page = (int)$_GET['page'];
+                                }
+                                else {
+                                    $page = 1;
+                                }
+                                $viewNum = 8;
+                                $viewLimit = ($viewNum * $page) - $viewNum;
+                                $sql = "SELECT * FROM myBlog WHERE blogDelete = 0 ORDER BY BlogID DESC LIMIT {$viewLimit}, {$viewNum};";
+                                $result = $connect -> query($sql);
+                            ?>
+                            <?php foreach($result as $blog){ ?>
+                                <div class="card">
+                                    <figure class="card__header">
+                                        <img src="../assets/blog/<?=$blog['blogImgSrc']?>" alt="vscode에 scss설치하기">
+                                        <a href="blogView.php?blogID=<?=$blog['blogID']?>" class="go"></a>
+                                        <span class="cate"><?=$blog['blogCategory']?></span>
+                                    </figure>
+                                    <div class="card__contents">
+                                        <div class="title">
+                                            <h3><a href="blogView.php?blogID=<?=$blog['blogID']?>"><?=$blog['blogTitle']?></a></h3>
+                                            <p><?=$blog['blogContents']?></p>
+                                        </div>
+                                        <div class="info">
+                                            <em class="author"><?=$blog['blogAuthor']?></em>
+                                            <span class="time"><?=date('Y-m-d', $blog['blogRegTime'])?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="card__pages">
                             <ul>
-                                <li><a href="#">&lt;&lt;</a></li>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">6</a></li>
-                                <li><a href="#">7</a></li>
-                                <li><a href="#">&gt;</a></li>
-                                <li><a href="#">&gt;&gt;</a></li>
+                                <?php
+                                    $sql = "SELECT count(BlogID) FROM myBlog";
+                                    $result = $connect -> query($sql);
+
+                                    $boardCount = $result -> fetch_array(MYSQLI_ASSOC);
+                                    $boardCount = $boardCount['count(BlogID)'];
+
+                                    // 총 페이지 개수
+                                    $boardCount = ceil($boardCount / $viewNum);
+
+                                    // 현재 페이지를 기준으로 보여주고 싶은 개수
+                                    $pageCurrent = 5;
+                                    $startPage = $page - $pageCurrent;
+                                    $endPage = $page + $pageCurrent;
+
+                                    // 처음 페이지 초기화
+                                    if($startPage < 1) {
+                                        $startPage = 1;
+                                    }
+
+                                    // 마지막 페이지 초기화
+                                    if($endPage > $boardCount) {
+                                        $endPage = $boardCount;
+                                    }
+
+                                    // 이전, 처음
+                                    if($page !== 1) {
+                                        $prevPage = $page - 1;
+                                        echo "<li><a href='./blog.php?page=1'><<</a></li>";
+                                        echo "<li><a href='./blog.php?page={$prevPage}'><</a></li>";
+                                    }
+                                    
+                                    // 페이지 넘버 표시
+                                    for($i = $startPage; $i <= $endPage; $i++) {
+                                        $active = "";
+                                        if($i === $page) $active = "active";
+                                        echo "<li class = '{$active}'><a href='./blog.php?page={$i}'>$i</a></li>";
+                                    }
+
+                                    if($page != $endPage) {
+                                        $nextPage = $page + 1;
+                                        echo "<li><a href='./blog.php?page={$nextPage}'>></a></li>";
+                                        echo "<li><a href='./blog.php?page={$boardCount}'>>></a></li>";
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </article>
@@ -92,15 +137,18 @@
                             어떤 일이라도 <em>노력</em>하고 즐기면 그 결과는 <em>빛</em>을 바란다고 생각합니다.
                         </div>
                     </div>
-                    <article class="aside__cate">
+                    <div class="blog__aside__cate">
                         <h3>카테고리</h3>
-                    </article>
-                    <article class="aside__cate">
-                        <h3>최신 글</h3>
-                    </article>
-                    <article class="aside__cate">
-                        <h3>인기 글</h3>
-                    </article>
+                        <?php include "../include/category.php" ?>
+                    </div>
+                    <div class="blog__aside__new">
+                        <h3>최신글</h3>
+                        <?php include "../include/blogNew.php" ?>
+                    </div>
+                    <div class="blog__aside__pop">
+                        <h3>인기글</h3>
+                        <?php include "../include/blogNew.php" ?>
+                    </div>
                     <article class="aside__cate">
                         <h3>최신 댓글</h3>
                     </article>

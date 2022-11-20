@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP 사이트 만들기</title>
 
-    <?php include "../include/head.php" ?>
+    <?php include "../include/head.php"?>
 </head>
 <body>
     <div id="skip">
@@ -20,8 +20,8 @@
         <a href="#footer">푸터 영역 바로가기</a>
     </div>
     <!-- //skip -->
-
-    <?php include "../include/header.php" ?>
+    
+    <?php include "../include/header.php"?>
     <!-- //header -->
 
     <main id="main">
@@ -33,7 +33,7 @@
                     <h3>개인정보 수집 및 이용에 대한 안내</h3>
                     <div class="privacy">
                         <ul>
-                            <li>목적 : 가입자 개인 식별, 가입 의사 확인, 가입자와의 원활한 의사소통, 가입자와의 교육 커뮤니테이션</li>
+                            <li>목적 : 가입자 개인 식별, 가입 의사 확인, 가입자와의 원활한 의사소통, 가입자와의 교육 커뮤니케이션</li>
                             <li>항목 : 아이디(이메일주소), 비밀번호, 이름, 생년월일, 휴대폰번호</li>
                             <li>보유기간 : 회원 탈퇴 시까지 보유(탈퇴일로부터 즉시 파기합니다.)</li>
                             <li>개인정보 수집에 대한 동의를 거부할 권리가 있으며, 회원 가입시 개인정보 수집을 동의함으로 간주합니다.</li>
@@ -76,8 +76,9 @@
         </section>
     </main>
     <!-- //main -->
-        
-    <?php include "../include/footer.php" ?>
+
+    <?php include "../include/footer.php"?>
     <!-- //footer -->
+    
 </body>
 </html>

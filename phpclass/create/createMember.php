@@ -9,9 +9,7 @@
     $sql .= "regTime int(20) NOT NULL,";
     $sql .= "PRIMARY KEY(memberID)";
     $sql .= ") CHARSET=utf8";
-
     $result = $connect -> query($sql);
-    
     if($result){
         echo "Create Tables Complete";
     } else {

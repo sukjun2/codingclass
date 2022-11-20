@@ -3,6 +3,7 @@
     include "../connect/session.php";
     $boardTitle = $_POST['boardTitle'];
     $boardContents = nl2br($_POST['boardContents']);
+
     $boardTitle = $connect -> real_escape_string($boardTitle);
     $boardContents = $connect -> real_escape_string($boardContents);
     $boardView = 1;
