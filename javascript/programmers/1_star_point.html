@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 직사각형 별찍기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 직사각형 별찍기</h2>
+                <p class="t_desc2">이 문제에는 표준 입력으로 두 개의 정수 n과 m이 주어집니다. 별(*) 문자를 이용해 가로의 길이가 a, 세로의 길이가 b인 직사각형 형태를 출력해보세요.</p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">n과 m은 각각 1000 이하인 자연수입니다.</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>a</th>
+                            <th>b</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5</td>
+                            <td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">process.stdin.setEncoding('utf8');
+process.stdin.on('data', data => {
+    const n = data.split(" ");
+    const a = Number(n[0]), b = Number(n[1]);
+    
+    for(i = 1; i &lt;= b; i++){
+        let star = '';
+        for(j = 1; j &lt;=a; j++){
+            star += '*';
+        }
+    console.log(star);        
+    }
+});
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    예전에 배웠던 구구단 만들기와 비슷한 풀이입니다. for문을 사용해 세로줄인 b 실행 한번에 가로줄인 a가 횟수만큼 실행되도록 작성해주면 끝입니다. 특이하게 console로 답을 체크하네요.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">process.stdin.setEncoding('utf8');
+process.stdin.on('data', data => {
+    const n = data.split(" ");
+    const a = Number(n[0]), b = Number(n[1]);
+    const row = '*'.repeat(a)
+    for(let i =0; i &lt; b; i++){
+        console.log(row)
+    }
+
+});
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    row변수에 문자열 *을 repeat메서드로 a번만큼 반복시킵니다. 그리고 for문을 사용해 row변수를 b번 실행시키면 완성입니다.
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
