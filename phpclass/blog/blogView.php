@@ -106,9 +106,9 @@
                         </div>
                         <div class="comment__modify" style="display:none;">
                             <label for="commentModifyMsg">수정 내용</label>
-                            <input type="text" id="commentModifyMsg">
+                            <input type="text" id="commentModifyMsg" name="commentModifyMsg">
                             <label for="commentModifyPass">비밀번호</label>
-                            <input type="text" id="commentModifyPass">
+                            <input type="text" id="commentModifyPass" name="commentModifyPass">
                             <button id="commentModifyCancel">취소</button>
                             <button id="commentModifyButton">수정</button>
                         </div>
@@ -270,37 +270,35 @@
         });
         
         // 수정 -> 수정
-        $("#commentModifyButton").click(function() {
-            if($("#commentModifyMsg").val === "") {
-                alert("댓글 작성 시 댓글을 적어주세요!");
-                $("#commentModifyMsg").focus();
-            }
-            else if($("#commentModifyPass").val === "" || $("#commentModifyMsg")) {
-                alert("댓글 작성 시 비밀번호를 적어 주세요!");
+        $("#commentModifyButton").click(function(){
+
+            let number = commentID.replace(/[^0-9]/g, "");
+
+            if($("#commentModifyMsg").val() == '' || $("#commentModifyPass").val() == ''){
+                alert("수정 내용 및 비밀번호를 입력해주세요!");
                 $("#commentModifyPass").focus();
-            }
-            else {
+            } else {
                 $.ajax({
-                    url : "blogCommentModify.php",
-                    method : "POST",
-                    dataType : 'json',
-                    data : {
-                        "pass" : $("#commentModifyPass").val(),
-                        "commentID" : commentID.replace("comment", ""),
-                        "commentMsg" : $("#commentModifyMsg").val()
+                    url: "blogCommentModify.php",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        "pass": $("#commentModifyPass").val(),
+                        "commentID": number,
+                        "commentMsg": $("#commentModifyMsg").val()
                     },
-                    success : function(data) {
+                    success: function(data){
                         console.log(data);
-                        location.reload();
+                        location.reload();              //데이터 받아오고 깜빡이면서 바로 받기
                     },
-                    error : function(request, status, error) {
-                        console.log("request",request);
-                        console.log("status",status);
-                        console.log("error",error);
+                    error: function(request, status, error){
+                        console.log("request" , request);
+                        console.log("status" , status);
+                        console.log("error" , error);
                     }
-                });
+                })
             }
-        });
+        })
 
         $("#commentBtn").click(function() {
             if($("#commentWrite").val() === "") {

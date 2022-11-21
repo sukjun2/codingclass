@@ -2,9 +2,9 @@
     include "../connect/connect.php";
 
     $sql = "CREATE TABLE myComment (";
-    $sql .= "myCommentID int(10) unsigned NOT NULL auto_increment,";
-    $sql .= "myMemberID int(10) unsigned NOT NULL,";
-    $sql .= "myBlogID int(10) unsigned NOT NULL,";
+    $sql .= "commentID int(10) unsigned NOT NULL auto_increment,";
+    $sql .= "memberID int(10) unsigned NOT NULL,";
+    $sql .= "blogID int(10) unsigned NOT NULL,";
     $sql .= "commentName varchar(30) NOT NULL,";
     $sql .= "commentMsg varchar(255) NOT NULL,";
     $sql .= "commentPass varchar(50) NOT NULL,";
