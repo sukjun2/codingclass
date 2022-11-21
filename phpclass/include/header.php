@@ -22,7 +22,7 @@
                     }  
                     else { 
                 ?>
-                    <li><a href="#" class = "loginBtn">로그인</a></li>
+                    <li><a href="../login/login.php" class = "loginBtn">로그인</a></li>
                     <li><a href="../login/join.php">회원가입</a></li>
                 <?php 
                     } 

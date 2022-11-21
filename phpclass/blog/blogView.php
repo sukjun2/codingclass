@@ -198,9 +198,6 @@
     <?php include "../include/footer.php";?>
     <!-- //footer -->
 
-    <?php include "../login/login.php" ?>
-    <!-- // login popup -->
-
     <script src="../asset/js/custom.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
