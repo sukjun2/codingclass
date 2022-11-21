@@ -11,5 +11,5 @@
 ?>
 
 <script>
-    location.href = "./board.php";
+    location.href = "http://tjrwnsrkdtj.dothome.co.kr/phpclass/board/board.php";
 </script>
