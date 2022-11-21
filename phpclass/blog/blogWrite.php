@@ -39,10 +39,10 @@
                         <div>
                             <label for="blogCategory">카테고리</label>
                             <select name="blogCategory" id="blogCategory">
-                                <option value="Playground">Playground</option>
-                                <option value="Tutorials">Tutorials</option>
-                                <option value="Articles">Articles</option>
-                                <option value="Collective">Collective</option>
+                                <option value="JAVASCRIPT">JAVASCRIPT</option>
+                                <option value="JQUERY">JQUERY</option>
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
                             </select>
                         </div>
                         <!-- 01 -->
