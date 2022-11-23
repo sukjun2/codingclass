@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 콜라츠 추측</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 콜라츠 추측</h2>
+                <p class="t_desc2">
+                    1937년 Collatz란 사람에 의해 제기된 이 추측은, 주어진 수가 1이 될 때까지 다음 작업을 반복하면, 모든 수를 1로 만들 수 있다는 추측입니다. 작업은 다음과 같습니다. <br />
+                    1-1. 입력된 수가 짝수라면 2로 나눕니다. <br />
+                    1-2. 입력된 수가 홀수라면 3을 곱하고 1을 더합니다. <br />
+                    2. 결과로 나온 수에 같은 작업을 1이 될 때까지 반복합니다. <br />
+                    예를 들어, 주어진 수가 6이라면 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 이 되어 총 8번 만에 1이 됩니다. 위 작업을 몇 번이나 반복해야 하는지 반환하는 함수, solution을 완성해 주세요. 단,
+                    주어진 수가 1인 경우에는 0을, 작업을 500번 반복할 때까지 1이 되지 않는다면 –1을 반환해 주세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">입력된 수, num은 1 이상 8,000,000 미만인 정수입니다.</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>n</th>
+                            <th>answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>6</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>626331</td>
+                            <td>-1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(num) {
+    let answer = 0;
+    while(answer &lt;= 500){
+        if(num === 1) return answer;
+        num = num % 2 === 0 ? num / 2 : num * 3 + 1;
+        answer += 1;
+    }
+    return -1;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    while문을 통해 500번까지 반복되도록 설정하고, 조건문으로 num이 1이라면 answer = 0값을 반환하도록 합니다. 그리고 삼항연산자를 사용하여 num이 짝수일 때, 홀수일 때 연산은 설정하고
+                    num변수에 저장합니다. while문의 조건에 만족하는 500번 이내로 num값이 1이 나오도록 계속 반복되게됩니다. 반복횟수인 answer값에 1씩 누적하여 더해주면 원하는 횟수가 반환됩니다.
+                    500번 시도를 해도 안되는 숫자로는 -1을 리턴하게합니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function collatz(num,count = 0) {
+    return num == 1 ? (count >= 500 ? -1 : count) : collatz(num % 2 == 0 ? num / 2 : num * 3 + 1,++count);
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    재귀함수를 사용한 풀이입니다. 대단합니다...
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
