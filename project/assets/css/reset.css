@@ -47,7 +47,7 @@ select,
 table,
 textarea {
     color: #000;
-    font-family: 'SUIT', 'MYArirangGothic', 'NexonLv1Gothic', 'AppleSDGothicNeo-Regular', 'Malgun Gothic', '맑은 고딕';
+    font-family: "GmarketSans", "SUIT", "MYArirangGothic", "NexonLv1Gothic", "AppleSDGothicNeo-Regular", "Malgun Gothic", "맑은 고딕";
 }
 a {
     text-decoration: none;
@@ -89,7 +89,7 @@ table {
 }
 .clearfix::before,
 .clearfix::after {
-    content: '';
+    content: "";
     display: block;
     line-height: 0;
 }
@@ -124,4 +124,5 @@ button {
 }
 input {
     border: none;
+    background: none;
 }

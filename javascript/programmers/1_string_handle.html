@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 문자열 다루기 기본</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 문자열 다루기 기본</h2>
+                <p class="t_desc2">
+                    문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요. 예를 들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴하면 됩니다.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    s는 길이 1 이상, 길이 8 이하인 문자열입니다. <br />
+                    s는 영문 알파벳 대소문자 또는 0부터 9까지 숫자로 이루어져 있습니다.
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>s</th>
+                            <th>answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"a234"</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>"1234"</td>
+                            <td>true</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(s) {
+    let answer = true;
+    if (s.length === 4 || s.length === 6){
+        if(s.match(/[a-z]/gi)) answer = false;
+        else answer = true;
+    } else {
+        answer = false;
+    }
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    조건문 안에 조건문을 사용하여 해결했습니다. 변수 s의 길이는 4 또는 6일 때 변수 s에 문자를 포함한다면 false, 문자를 포함하지 않는다면 true를 반환하도록 하고 먼저 설정한 길이값이
+                    아니라면 false가 나오도록 하면 됩니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function alpha_string46(s){
+    var regex = /^\d{6}$|^\d{4}$/;
+    return regex.test(s);
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    (정규표현식).test("문자열") : "문자열"이 "정규표현식"과 매칭되면 true, 아니면 false반환 <br />
+                    정규식은 잘 모르겠네요 ㅎㅎ..
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
