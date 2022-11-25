@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 부족한 금액 계산하기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 부족한 금액 계산하기</h2>
+                <p class="t_desc2">
+                    새로 생긴 놀이기구는 인기가 매우 많아 줄이 끊이질 않습니다. 이 놀이기구의 원래 이용료는 price원 인데, 놀이기구를 N 번 째 이용한다면 원래 이용료의 N배를 받기로 하였습니다. 즉, 처음
+                    이용료가 100이었다면 2번째에는 200, 3번째에는 300으로 요금이 인상됩니다. 놀이기구를 count번 타게 되면 현재 자신이 가지고 있는 금액에서 얼마가 모자라는지를 return 하도록 solution
+                    함수를 완성하세요. <br />
+                    단, 금액이 부족하지 않으면 0을 return 하세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    놀이기구의 이용료 price : 1 ≤ price ≤ 2,500, price는 자연수<br />
+                    처음 가지고 있던 금액 money : 1 ≤ money ≤ 1,000,000,000, money는 자연수<br />
+                    놀이기구의 이용 횟수 count : 1 ≤ count ≤ 2,500, count는 자연수
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>price</th>
+                            <th>money</th>
+                            <th>count</th>
+                            <th>result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td>20</td>
+                            <td>4</td>
+                            <td>10</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(price, money, count) {
+    let answer = 0;
+    for (i = 1; i &lt;= count; i++){
+        let x = price * i;
+        answer = (money -= x) * -1;
+    }
+    if(answer &lt; 0) return 0;
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    for문으로 놀이기구 타는 횟수를 범위로하여 타는 횟수별로 N배로 늘어나는 price값을 찾고 보유한 money값에서 누적으로 -하여 +로 부호를 변경해주면 모자란 돈이 나옵니다. 마지막으로 돈이
+                    모자라지 않을 경우 0을 리턴해주면 끝입니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(price, money, count) {
+    const tmp = price * count * (count + 1) / 2 - money;
+    return tmp > 0 ? tmp : 0;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    가우스 공식을 사용했다고 하는데 입출력의 예를 기준으로 계산하면 3 * 1 * (1,2,3,4 + 1) / 2 - 20 연산을 한 값이 0보다 크다면 tmp값을 리턴 아니라면 돈이 모자르지 않은것으로 0을
+                    리턴하게 됩니다.
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
