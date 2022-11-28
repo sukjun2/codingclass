@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 3진법 뒤집기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 3진법 뒤집기</h2>
+                <p class="t_desc2">자연수 n이 매개변수로 주어집니다. n을 3진법 상에서 앞뒤로 뒤집은 후, 이를 다시 10진법으로 표현한 수를 return 하도록 solution 함수를 완성해주세요.</p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">n은 1 이상 100,000,000 이하인 자연수입니다.</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>n</th>
+                            <th>return</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>45</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>125</td>
+                            <td>229</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+<pre><code class="language-js">function solution(n) {
+    let answer = 0;
+    let x = n.toString(3).split('').reverse().join('')
+    // console.log(x)
+    return answer = parseInt(x, 3);
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">toString()메서드가 인자값을 전달하면 해당 인자값으로 진법을 변환하여 문자열로 전달해준다합니다. 배열화하고 순서를 뒤집어 다시 문자열로 빼내어 parseInt메서드를 사용하는데,
+                    parseInt()메서드도 숫자화 기능뿐 아니라, 인자값을 전달해주면 해당 인자값을 분석하여 정수로 반환해주는 기능이 있다고하네요.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+<pre><code class="language-js">const solution = (n) => {
+    return parseInt([...n.toString(3)].reverse().join(""), 3);
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">더 깔끔하게 한줄로 풀어냈군요.</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
