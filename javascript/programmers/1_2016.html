@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : 2016년</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : 2016년</h2>
+                <p class="t_desc2">
+                    2016년 1월 1일은 금요일입니다. 2016년 a월 b일은 무슨 요일일까요? 두 수 a ,b를 입력받아 2016년 a월 b일이 무슨 요일인지 리턴하는 함수, solution을 완성하세요. 요일의 이름은 일요일부터
+                    토요일까지 각각 SUN,MON,TUE,WED,THU,FRI,SAT 입니다. 예를 들어 a=5, b=24라면 5월 24일은 화요일이므로 문자열 "TUE"를 반환하세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    2016년은 윤년입니다. <br />
+                    2016년 a월 b일은 실제로 있는 날입니다. (13월 26일이나 2월 45일같은 날짜는 주어지지 않습니다)
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>a</th>
+                            <th>b</th>
+                            <th>result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5</td>
+                            <td>24</td>
+                            <td>"TUE"</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(a, b) {
+    let answer = '';
+    answer = new Date(2016, a - 1, b).toString().slice(0, 3).toUpperCase();
+    // new Date(year, monthIndex, day)
+    return answer;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    new Date()메서드로 2016년 a월 b일을 반환해주는데 monthIndex값부터 시작하기 때문에 월값에 -1을 해줍니다. 반환값을 문자열로 변경하고 slice()메서드로 월 부분만 추출해준 뒤 대문자화
+                    시켜주면 끝입니다.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+                    <pre><code class="language-js">function solution(a, b) {
+    const monthDay = [31,29,31,30,31,30,31,31,30,31,30,31]
+    const weekDay = ["THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED"]
+
+    let days = b
+    for(let i=0 ; i&lt;a-1 ; i++)
+        days += monthDay[i];
+
+    return weekDay[days%7];
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">각 월별로 일 수와 각 요일을 변수에 저장하고 for문을 사용하여 monthDay의 총합인 365 + b를 7로 나눈 나머지값이 weekDay의 index값으로 남아 찾는 요일을 반환합니다.</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
