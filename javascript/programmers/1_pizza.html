@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 0단계 : 피자 나눠 먹기</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 0단계 : 피자 나눠 먹기</h2>
+                <p class="t_desc2">머쓱이네 피자가게는 피자를 일곱 조각으로 잘라 줍니다. 피자를 나눠먹을 사람의 수 n이 주어질 때, 모든 사람이 피자를 한 조각 이상 먹기 위해 필요한 피자의 수를 return 하는 solution 함수를 완성해보세요.
+
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    1 ≤ n ≤ 100
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>n</th>
+                            <th>result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>7</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+<pre><code class="language-js">function solution(n) {
+    return n % 7 === 0 ? Math.floor(n / 7) : Math.floor(n / 7) + 1;
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">7조각의 피자를 7명이서 먹는다고 했을때 n명 % 7조각 = 0 이라면 n명을 7조각으로 나눈값의 소수점을 버린값을, 아니라면 동일한 값에 +1 한 값을 출력하면 피자 판 수가 계산됩니다.</div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+<pre><code class="language-js">function solution(n) {
+    return Math.ceil(n / 7)
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">할게 많아서 쉬어갈겸 0단계로 이번 주말을 떼웠는데 왜 어렵죠..?</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 0단계 : 짝수 홀수 개수</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 0단계 : 짝수 홀수 개수</h2>
+                <p class="t_desc2">정수가 담긴 리스트 num_list가 주어질 때, num_list의 원소 중 짝수와 홀수의 개수를 담은 배열을 return 하도록 solution 함수를 완성해보세요.
+
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">
+                    1 ≤ num_list의 길이 ≤ 100 <br>
+0 ≤ num_list의 원소 ≤ 1,000
+                </div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>num_list</th>
+                            <th>result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>[1,2,3,4,5]</td>
+                            <td>[2,3]</td>
+                        </tr>
+                        <tr>
+                            <td>[1,3,5,7]</td>
+                            <td>[0,4]</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+<pre><code class="language-js">function solution(num_list) {
+    let answer = [];
+    let x = [];
+    for(i = 0; i &lt; num_list.length; i++){
+        if(num_list[i] % 2 === 0){
+            x.push(i);
+        }
+    }
+    return answer = [x.length, num_list.length - x.length];
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box"></div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+<pre><code class="language-js">function solution(num_list) {
+    return [
+      num_list.filter((num) => num % 2 === 0).length,
+      num_list.filter((num) => num % 2 === 1).length,
+    ];
+  }
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">num_list에 filter()메서드로 짝수와 홀수의 길이값을 바로 return하게 했네요.</div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
