@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>프로그래머스 1단계 : K번째수</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/dracula.css" />
+    </head>
+
+    <body>
+        <main id="main">
+            <div class="document">
+                <h2 class="t_tit">프로그래머스 1단계 : K번째수</h2>
+                <p class="t_desc2">
+                    배열 array의 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을 때, k번째에 있는 수를 구하려 합니다. <br />
+                    예를 들어 array가 [1, 5, 2, 6, 3, 7, 4], i = 2, j = 5, k = 3이라면 <br />
+                    array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다. <br />
+                    1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다. <br />
+                    2에서 나온 배열의 3번째 숫자는 5입니다.<br />
+                    배열 array, [i, j, k]를 원소로 가진 2차원 배열 commands가 매개변수로 주어질 때, commands의 모든 원소에 대해 앞서 설명한 연산을 적용했을 때 나온 결과를 배열에 담아 return 하도록
+                    solution 함수를 작성해주세요.
+                </p>
+                <hr />
+                <br />
+                <h3>※ 제한사항</h3>
+                <div class="t_box">N의 범위 : 100,000,000 이하의 자연수</div>
+                <br />
+                <h3>※ 입출력 예</h3>
+                <table class="t_table">
+                    <thead>
+                        <tr>
+                            <th>array</th>
+                            <th>commands</th>
+                            <th>return</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>[1, 5, 2, 6, 3, 7, 4]</td>
+                            <td>[[2, 5, 3], [4, 4, 1], [1, 7, 3]]</td>
+                            <td>[5, 6, 3]</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="t_code">
+<pre><code class="language-js">function solution(array, commands) {
+    let answer = [];
+    for(let i = 0; i &lt; commands.length; i++){
+        let x = array.slice(commands[i][0]-1, commands[i][1]).sort((a, b) => a - b);
+        //for문을 사용해 array의 0번째 배열 0번째 인덱스값부터 1번째 인덱스값까지 slice해주고 sort()메서드로 오름차순으로 정렬해줍니다.(인덱스 값 부터 짤라야하므로 -1을 해줌)
+        answer.push(x[commands[i][2]-1]);
+        //answer에 정렬한 값의 3번째 인덱스값을 push해주면 됩니다.(동일하게 인덱스 값이므로 -1 해줌)
+    }
+    return answer;
+}
+
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    설명은 주석을 참고해주세요.
+                </div>
+                <br />
+                <h3>※ 다른 사람의 풀이</h3>
+                <div class="t_code">
+<pre><code class="language-js">function solution(array, commands) {
+    return commands.map(v => {
+        return array.slice(v[0] - 1, v[1]).sort((a, b) => a - b).slice(v[2] - 1, v[2])[0];
+    });
+}
+</code></pre>
+                </div>
+                <br />
+                <div class="t_box">
+                    map문을 사용하여 2차원 배열 내부의 배열 순서대로 기존 풀이방법과 동일하게 반복 실행하면 됩니다.
+                </div>
+            </div>
+        </main>
+        <!-- //main -->
+
+        <footer id="footer">
+            <a href="mailto:tjrwns3650@gmail.com">tjrwns3650@gmail.com</a>
+        </footer>
+        <!-- //footer -->
+
+        <script src="../assets/js/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
